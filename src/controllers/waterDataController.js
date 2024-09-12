@@ -24,15 +24,17 @@ export const createWaterDataController = async (req, res) => {
   const data = await addWaterDataService(req.waterData);
   res.status(201).json({
     status: 201,
-    message: `Successfully created a contact!`,
+    message: `Successfully created a waterItem!`,
     data,
   });
 };
 
 export const upsertWaterItemController = async (req, res) => {
   console.log('upsertWaterItemByIdController:');
-
-  const result = await updateWaterItemService(req.waterData, {
+  const { id } = req.params;
+  const userId = req.authUser._id;
+  // const result = await updateWaterItemService(req.waterData, {
+  const result = await updateWaterItemService(id, userId, req.body, {
     upsert: true,
   });
   console.log({ result });
@@ -52,10 +54,9 @@ export const upsertWaterItemController = async (req, res) => {
 export const deleteWaterItemByIdController = async (req, res, next) => {
   const { id } = req.params;
   const userId = req.authUser._id;
-  // const contact = await deleteWaterItemService(userId, id);
-  const item = await deleteWaterItemService(userId, id);
+  const waterItem = await deleteWaterItemService(userId, id);
 
-  if (!item) {
+  if (!waterItem) {
     throw createHttpError(404, `WaterItem by id:[${id}] not exists`);
   }
 
