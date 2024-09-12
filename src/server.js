@@ -1,12 +1,11 @@
 import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
-// import { env } from './utils/env.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
-import app_config from './constants/app.js';
+import { APP_CONFIG } from './constants/app.js';
 
-const PORT = app_config.PORT;
+const PORT = APP_CONFIG.PORT;
 
 export const startServer = () => {
   const app = express();
