@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { controllerWrapper } from '../controllers/controllerWrapper.js';
+import { controllerWrapper } from '../utils/controllerWrapper.js';
 import {
   loginAuthUserSchema,
   registerAuthUserSchema,
