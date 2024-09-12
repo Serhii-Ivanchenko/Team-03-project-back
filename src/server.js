@@ -1,6 +1,7 @@
 import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { APP_CONFIG } from './constants/app.js';
@@ -12,6 +13,7 @@ export const startServer = () => {
   const app = express();
 
   app.use(express.json());
+  app.use(cookieParser());
   app.use(cors());
 
   app.use(
