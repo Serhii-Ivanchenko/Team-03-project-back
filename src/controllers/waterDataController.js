@@ -66,7 +66,9 @@ export const deleteWaterItemByIdController = async (req, res, next) => {
 };
 
 export const getDayWaterDataController = async (req, res, next) => {
-  const { date } = req.params || Date.now();
+  let { date } = req.params;
+  console.log({ params: req.params });
+
   const user = req.authUser;
   const userId = user._id;
   console.log({ userId });

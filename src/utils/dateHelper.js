@@ -1,5 +1,13 @@
 import { format } from 'date-fns/format';
 
+export const getFormattedDate = (date) => {
+  if (date == undefined) {
+    date = Date.now();
+  }
+  date = new Date(date);
+  return format(date, 'yyyy-MM-dd');
+};
+
 const getStartOfMonth = (date) => {
   date = new Date(date);
   date = new Date(date.getFullYear(), date.getMonth(), 1, 0, 0, 0, 0);

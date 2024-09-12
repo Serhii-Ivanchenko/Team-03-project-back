@@ -1,5 +1,9 @@
 import { WaterDataCollection } from '../db/models/waterDataModel.js';
-import { getAllDaysInMonth, getMonthDates } from '../utils/dateHelper.js';
+import {
+  getMonthDates,
+  getFormattedDate,
+  getAllDaysInMonth,
+} from '../utils/dateHelper.js';
 
 export const getWaterDataService = async () => {
   const waterData = WaterDataCollection.find();
@@ -45,8 +49,8 @@ export const deleteWaterItemService = async (userId, id) => {
 };
 
 export const getDayWaterDataService = async (userId, date) => {
+  date = getFormattedDate(date);
   const result = await WaterDataCollection.find({ userId, date });
-  console.log({ result });
   const dayWaterDdata = result.map((item) => ({
     id: item._id,
     date: item.date,
