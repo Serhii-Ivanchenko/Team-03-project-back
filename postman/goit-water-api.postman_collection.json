@@ -1,0 +1,600 @@
+{
+  "info": {
+    "_postman_id": "6b17a8f4-a63c-40d4-9c64-e228a1f6976c",
+    "name": "goit-water-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "11118472",
+    "_collection_link": "https://gt1111.postman.co/workspace/GoIt~44e0d58a-e85d-4a48-bb5d-1a163cb4bc71/collection/11118472-6b17a8f4-a63c-40d4-9c64-e228a1f6976c?action=share&source=collection_link&creator=11118472"
+  },
+  "item": [
+    {
+      "name": "Water",
+      "item": [
+        {
+          "name": "add",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "day",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "month",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "all",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "customers",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{accessToken}}",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "exec": [""]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Reset",
+          "item": [
+            {
+              "name": "auth/request-Reset-email",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\":\"buboot.online@gmail.com\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{domain}}/auth/request-reset-email",
+                  "host": ["{{domain}}"],
+                  "path": ["auth", "request-reset-email"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "auth/reset-password",
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n      \"token\": \"\",\r\n        \"password\": \"\"\r\n}        ",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{domain}}/auth/reset-password",
+                  "host": ["{{domain}}"],
+                  "path": ["auth", "reset-password"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Google",
+          "item": [
+            {
+              "name": "google",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{domain}}/auth/google",
+                  "host": ["{{domain}}"],
+                  "path": ["auth", "google"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "get-oauth-url",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{domain}}/auth/google/get-oauth-url",
+                  "host": ["{{domain}}"],
+                  "path": ["auth", "google", "get-oauth-url"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "confirm-oauth",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"code\":\"\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{domain}}/auth/google/confirm-oauth",
+                  "host": ["{{domain}}"],
+                  "path": ["auth", "google", "confirm-oauth"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Admin",
+          "item": [
+            {
+              "name": "auth/users",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3000/auth/users",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "3000",
+                  "path": ["auth", "users"],
+                  "query": [
+                    {
+                      "key": "user",
+                      "value": "slavko",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "auth/sessions",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{domain}}/auth/sessions",
+                  "host": ["{{domain}}"],
+                  "path": ["auth", "sessions"],
+                  "query": [
+                    {
+                      "key": "user",
+                      "value": "slavko",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "auth/users/_id",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{domain}}/auth/users/66cf06b10ec902bb6bdd3a6f",
+                  "host": ["{{domain}}"],
+                  "path": ["auth", "users", "66cf06b10ec902bb6bdd3a6f"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "auth/sessions/_id",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{domain}}/auth/users",
+                  "host": ["{{domain}}"],
+                  "path": ["auth", "users"],
+                  "query": [
+                    {
+                      "key": "user",
+                      "value": "slavko",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "auth",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    // \"name\":\"test\",\r\n    \"email\":\"email.test@test.net\",\r\n    \"password\":\"testPassword\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{domain}}/auth",
+              "host": ["{{domain}}"],
+              "path": ["auth"],
+              "query": [
+                {
+                  "key": "user",
+                  "value": "slavko",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "auth/register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"name\":\"test2\",\r\n    \"email\":\"email.test2@test.net\",\r\n    \"password\":\"testPassword\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{domain}}/auth/register",
+              "host": ["{{domain}}"],
+              "path": ["auth", "register"],
+              "query": [
+                {
+                  "key": "user",
+                  "value": "slavko",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "auth/login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = JSON.parse(responseBody);\r",
+                  "pm.collectionVariables.set(\"accessToken\", json.data.accessToken);\r",
+                  "pm.environment.set(\"accessToken\", json.data.accessToken);"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"buboot.online@gmail.com\",\r\n     \"password\":\"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{domain}}/auth/login",
+              "host": ["{{domain}}"],
+              "path": ["auth", "login"],
+              "query": [
+                {
+                  "key": "user",
+                  "value": "slavko",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "auth/refresh",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = JSON.parse(responseBody);\r",
+                  "pm.collectionVariables.set(\"accessToken\", json.data.accessToken);\r",
+                  "pm.environment.set(\"accessToken\", json.data.accessToken);"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"buboot.online@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{domain}}/auth/refresh",
+              "host": ["{{domain}}"],
+              "path": ["auth", "refresh"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "auth/logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"buboot.online@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/logout",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["auth", "logout"],
+              "query": [
+                {
+                  "key": "user",
+                  "value": "slavko",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Brevo",
+      "item": [
+        {
+          "name": "test-send-email",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{brevo-apii-key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "API-key",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "api-key",
+                "value": "",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{  \r\n   \"sender\":{  \r\n      \"name\":\"Sender Brevo\",\r\n      \"email\":\"sender-brevo@example.com\"\r\n   },\r\n   \"to\":[  \r\n      {  \r\n         \"email\":\"receipient@example.com\",\r\n         \"name\":\"receipient example\"\r\n      }\r\n   ],\r\n   \"subject\":\"Hello world\",\r\n   \"htmlContent\":\"<html><head></head><body><p>Hello,</p>This is my first transactional email sent from Brevo.</p></body></html>\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.brevo.com/v3/smtp/email",
+              "protocol": "https",
+              "host": ["api", "brevo", "com"],
+              "path": ["v3", "smtp", "email"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "domain",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "brevo-apii-key",
+      "value": ""
+    },
+    {
+      "key": "render",
+      "value": "https://contacts-app-p90i.onrender.com",
+      "type": "string"
+    }
+  ]
+}
