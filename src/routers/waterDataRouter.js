@@ -1,6 +1,9 @@
 import { Router, json } from 'express';
 import { controllerWrapper } from '../controllers/controllerWrapper.js';
-import { addWaterDataSchema } from '../validation/waterDataValidation.js';
+import {
+  addWaterDataSchema,
+  updateWaterDataSchema,
+} from '../validation/waterDataValidation.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import {
   getWaterDataController,
@@ -26,8 +29,9 @@ router.post(
 
 router.patch(
   '/:id',
-  jsonParser,
   validateId,
+  jsonParser,
+  validateBody(updateWaterDataSchema),
   defineWaterDataObject,
   controllerWrapper(upsertWaterItemController),
 );

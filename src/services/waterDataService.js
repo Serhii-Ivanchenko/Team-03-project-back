@@ -14,36 +14,41 @@ export const addWaterDataService = async (data) => {
 
 // export const updatetWaterItemservice;
 export const updateWaterItemService = async (
-  userId,
   id,
-  data,
+  userId,
+  payload,
   options = {},
 ) => {
-  console.log('>>updatecontactService');
+  console.log('>>updateWaterItemService');
+  // const { id, value, userId } = waterItem;
+  // console.log({ waterItem });
+  console.log({ options });
+  console.log({ payload });
 
   const rawResult = await WaterDataCollection.findOneAndUpdate(
     { _id: id, userId },
-    data,
+    payload,
     {
       new: true,
       includeResultMetadata: true,
       ...options,
     },
   );
+  console.log({ rawResult });
 
   if (!rawResult || !rawResult.value) return null;
 
   return {
-    contact: rawResult.value,
+    waterItem: rawResult.value,
     isNew: Boolean(rawResult?.lastErrorObject?.upserted),
   };
 };
 
 export const deleteWaterItemService = async (userId, id) => {
-  const contact = await WaterDataCollection.findOneAndDelete({
+  const waterItem = await WaterDataCollection.findOneAndDelete({
     _id: id,
     userId,
   });
 
-  return contact;
+  return waterItem;
 };
