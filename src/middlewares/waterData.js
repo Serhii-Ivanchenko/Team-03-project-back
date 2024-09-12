@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 
 export async function defineWaterDataObject(req, res, next) {
-  console.log('defineContactDataObject:--------------------------------');
+  console.log('defineWaterDataObject:--------------------------------');
   console.log('body', req.body);
   console.log('user', req.authUser);
   // console.log('file', req.file);
