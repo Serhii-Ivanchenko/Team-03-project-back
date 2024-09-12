@@ -15,13 +15,13 @@ import { defineWaterDataObject } from '../middlewares/waterData.js';
 import { validateId } from '../middlewares/validateId.js';
 
 const router = Router();
-const jsonParser = json();
+// const jsonParser = json();
 
 router.get('/', controllerWrapper(getWaterDataController));
 
 router.post(
   '/',
-  jsonParser,
+  // jsonParser,
   validateBody(addWaterDataSchema),
   defineWaterDataObject,
   controllerWrapper(createWaterDataController),
@@ -30,7 +30,7 @@ router.post(
 router.patch(
   '/:id',
   validateId,
-  jsonParser,
+  // jsonParser,
   validateBody(updateWaterDataSchema),
   defineWaterDataObject,
   controllerWrapper(upsertWaterItemController),
