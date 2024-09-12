@@ -4,6 +4,7 @@ import cors from 'cors';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { APP_CONFIG } from './constants/app.js';
+import router from './routers/router.js';
 
 const PORT = APP_CONFIG.PORT;
 
@@ -26,6 +27,7 @@ export const startServer = () => {
       message: 'Hello world!',
     });
   });
+  app.use(router);
 
   app.use(notFoundHandler);
 

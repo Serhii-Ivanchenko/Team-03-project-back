@@ -6,8 +6,8 @@ import { Router } from 'express';
 // import contactsRouter from './contactsRouter.js';
 // import { swaggerDocs } from '../middlewares/swaggerDocs.js';
 
-import { auth } from '../middlewares/auth.js';
-import waterRouter from './waterRouter.js';
+// import { auth } from '../middlewares/auth.js';
+import waterDataRouter from './waterDataRouter.js';
 
 const router = Router();
 
@@ -18,7 +18,7 @@ const router = Router();
 // router.use('/contacts', auth, contactsRouter);
 // router.use('/api-docs', swaggerDocs());
 
-router.use('/water/all', waterRouter);
-router.use('/water', auth, waterRouter);
+router.use('/water/all', waterDataRouter);
+// router.use('/water', auth, waterDataRouter);
 
 export default router;

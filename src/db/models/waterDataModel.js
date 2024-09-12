@@ -10,4 +10,4 @@ const waterItemSchema = new Schema(
   { timestamps: true, versionKey: false },
 );
 
-export const WaterItemCollection = model('wateritem', waterItemSchema);
+export const WaterDataCollection = model('wateritem', waterItemSchema);
