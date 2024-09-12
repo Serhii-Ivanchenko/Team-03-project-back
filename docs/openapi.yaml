@@ -1,0 +1,23 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Contacts APP
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: API for tracking the amount of water consumed by users. It allows adding, updating, and retrieving water intake data.
+tags:
+  - name: Цater
+    description: Operations about waterы.
+  - name: Auth
+    description: Auth operations.
+servers:
+  - url: http://localhost:8080
+  - url: https://watertracker-app-spy2.onrender.com
+# paths:
+#  добавлять пути
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
