@@ -21,6 +21,7 @@ const getEndOfMonth = (date) => {
 };
 
 export const getMonthDates = (date) => {
+  date = getFormattedDate(date);
   return {
     som: getStartOfMonth(date),
     eom: getEndOfMonth(date),
@@ -28,6 +29,7 @@ export const getMonthDates = (date) => {
 };
 
 export const getAllDaysInMonth = (date) => {
+  date = getFormattedDate(date);
   date = new Date(date);
   const year = date.getFullYear();
   const month = date.getMonth(); // 0-based index for months

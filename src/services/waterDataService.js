@@ -99,11 +99,10 @@ export const getMonthWaterDataService = async (userId, date) => {
     date: item._id.date,
     value: item.value,
   }));
-  console.log(waterData);
+  console.log({ waterData });
 
   const monthDays = getAllDaysInMonth(date);
   const waterDataMap = new Map(waterData.map((item) => [item.date, item]));
-
   const monthWaterData = monthDays.map((day) => {
     if (waterDataMap.has(day)) {
       return waterDataMap.get(day);
