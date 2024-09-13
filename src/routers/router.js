@@ -4,6 +4,7 @@ import authUserRouter from './authUserRouter.js';
 // import authUserResetRouter from './authUserResetRouter.js';
 import authGoogleRouter from './authGoogleRouter.js';
 // import { swaggerDocs } from '../middlewares/swaggerDocs.js';
+import authDataUserRouter from './authDataUserRouter.js';
 
 import { auth } from '../middlewares/auth.js';
 import waterDataRouter from './waterDataRouter.js';
@@ -17,5 +18,7 @@ router.use('/users', authGoogleRouter);
 
 router.use('/water/all', waterDataRouter);
 router.use('/water', auth, waterDataRouter);
+
+router.use('/auth', authDataUserRouter);
 
 export default router;
