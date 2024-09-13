@@ -8,13 +8,14 @@ import authDataUserRouter from './authDataUserRouter.js';
 
 import { auth } from '../middlewares/auth.js';
 import waterDataRouter from './waterDataRouter.js';
+import swaggerDocs from '../middlewares/swaggerDocs.js';
 
 const router = Router();
 
 router.use('/users', authUserRouter);
 // router.use('/users', authUserResetRouter);
 router.use('/users', authGoogleRouter);
-// router.use('/api-docs', swaggerDocs());
+router.use('/api-docs', swaggerDocs());
 router.use('/users', authDataUserRouter);
 
 router.use('/water/all', waterDataRouter);

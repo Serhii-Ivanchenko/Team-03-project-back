@@ -1,12 +1,12 @@
 tags:
-  - Auth
-summary: Data User
-operationId: dataUser
-description: 'Получения параметров зарегестрирвованного пользователя'
+  - Users
+summary: Retrieve User Data
+operationId: getUserData
+description: 'Retrieves the parameters of a registered user'
 security: []
 responses:
   '200':
-    description: 'Ответ с получеными данными про пользователя'
+    description: 'Response containing user data'
     content:
       application/json:
         schema:

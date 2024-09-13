@@ -20,36 +20,36 @@ properties:
     example: 'John Wick'
     default: null
   email:
-    description: 'Email user'
+    description: 'User email address'
     type: string
     example: 'BabaYaga@gmail.com'
   password:
-    description: 'Password user'
+    description: 'User password'
     type: string
     example: 'password'
   gender:
-    description: 'Пол пользователя'
+    description: 'User gender'
     type: string
     enum: ['woman', 'man']
     example: 'man'
     default: 'woman'
   photo:
-    description: '?????'
+    description: 'URL to the user profile photo'
     type: string
     example: 'https://res.cloudinary.com/da1ye1zxl/image/upload/v1725386810/bculv62l8qumzswpbkgz.jpg'
     default: null
   weight:
-    description: '?????'
+    description: 'User weight in kilograms'
     type: number
     example: 80
     default: 0
   activeTime:
-    description: '?????'
+    description: 'User active time in hours per day'
     type: number
     example: 24
     default: 0
   dailyNorm:
-    description: '?????'
+    description: 'Daily water intake in milliliters'
     type: number
     example: 2500
     default: 1700
