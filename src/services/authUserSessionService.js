@@ -5,7 +5,7 @@ import { FIFTEEN_MINUTES, ONE_DAY } from '../constants/index.js';
 export const getAuthUserSessionById = (id) =>
   AuthUserSessionCollection.findById(id);
 
-export const isRefreshTockenExpired = (session) => {
+export const isRefreshTokenExpired = (session) => {
   return new Date() > new Date(session.refreshTokenValidUntil);
 };
 

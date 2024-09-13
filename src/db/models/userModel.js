@@ -3,7 +3,7 @@ import { model, Schema } from 'mongoose';
 const userSchema = new Schema(
   {
     // Auth
-    name: { type: String, required: true },
+    name: { type: String, required: false, default: null },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
 
@@ -22,7 +22,7 @@ const userSchema = new Schema(
 
     weight: {
       type: Number,
-      required: true,
+      // required: true,
       default: 0,
     },
     activeTime: {
@@ -30,10 +30,10 @@ const userSchema = new Schema(
       // required: true,
       default: 0,
     },
-    amount: {
+    dailyNorm: {
       type: Number,
-      // required: true,
-      default: 0,
+      required: true,
+      default: 1700,
     },
   },
   { timestamps: true, versionKey: false },

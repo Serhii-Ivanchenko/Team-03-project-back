@@ -7,6 +7,8 @@ import {
   deleteWaterItemService,
   updateWaterItemService,
 } from '../services/waterDataService.js';
+import { getDayWaterDataService } from '../services/waterDataService.js';
+import { getMonthWaterDataService } from '../services/waterDataService.js';
 
 export const getWaterDataController = async (req, res) => {
   const waterData = await getWaterDataService(req.query);
@@ -47,7 +49,7 @@ export const upsertWaterItemController = async (req, res) => {
   res.status(status).json({
     status,
     message: `Successfully upserted a waterItem!`,
-    data: result.contact,
+    data: result.waterItem,
   });
 };
 
@@ -61,4 +63,42 @@ export const deleteWaterItemByIdController = async (req, res, next) => {
   }
 
   res.status(204).send();
+};
+
+export const getDayWaterDataController = async (req, res, next) => {
+  let { date } = req.params;
+  console.log({ params: req.params });
+
+  const user = req.authUser;
+  const userId = user._id;
+  console.log({ userId });
+  console.log({ date });
+
+  const waterData = await getDayWaterDataService(userId, date);
+  console.log({ waterData });
+
+  res.send({
+    userId,
+    dailyNorm: user.dailyNorm,
+    data: waterData,
+  });
+};
+
+export const getMonthWaterDataController = async (req, res, next) => {
+  let { date } = req.params;
+  const user = req.authUser;
+  const userId = user._id;
+
+  console.log({ date });
+  console.log({ user });
+  console.log({ userId });
+
+  const waterData = await getMonthWaterDataService(userId, date);
+  console.log({ waterData });
+
+  res.send({
+    userId,
+    dailyNorm: user.dailyNorm,
+    data: waterData,
+  });
 };

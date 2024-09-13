@@ -13,7 +13,7 @@ import {
   getAuthUsersSessionsService,
   refreshAuthUsersSessionService,
   setupAuthUserSessionCookies,
-  isRefreshTockenExpired,
+  isRefreshTokenExpired,
 } from '../services/authUserSessionService.js';
 
 import { comparePasswords } from '../utils/password.js';
@@ -72,7 +72,7 @@ export const loginAuthUserController = async (req, res) => {
   const { email, password } = req.body;
   const authUser = await getAuthUserByEmail(email);
   if (!authUser) {
-    throw createHttpError(401, 'Unauthorized');
+    throw createHttpError(404, 'User not found');
   }
 
   const isPasswordCorrect = await comparePasswords(password, authUser.password);
@@ -109,7 +109,7 @@ export const refreshAuthUserSessionController = async (req, res) => {
     throw createHttpError(401, 'Session not found');
   }
 
-  const isSessionTokenExpired = await isRefreshTockenExpired(session);
+  const isSessionTokenExpired = await isRefreshTokenExpired(session);
   if (isSessionTokenExpired) {
     throw createHttpError(401, 'Session token expired');
   }

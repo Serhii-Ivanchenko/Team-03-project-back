@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { controllerWrapper } from '../controllers/controllerWrapper.js';
+import { controllerWrapper } from '../utils/controllerWrapper.js';
 import {
   loginAuthUserSchema,
   registerAuthUserSchema,
@@ -17,9 +17,11 @@ import { validateBody } from '../middlewares/validateBody.js';
 
 const router = Router();
 
+// #region:Admin
 router.get('/', controllerWrapper(getAuthController)); // службовий
 router.get('/users', controllerWrapper(getAuthUsersController)); // statistics of users
 router.get('/sessions', controllerWrapper(getAuthUsersSessionsController)); // Службовий
+// #endregion
 
 router.post(
   '/register',
