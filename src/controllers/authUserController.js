@@ -5,6 +5,7 @@ import {
   getAuthUsersService,
   createAuthUserService,
   logoutAuthUserService,
+  loginOrSignupWithGoogle,
 } from '../services/authUserService.js';
 import {
   getAuthUserSessionById,
@@ -16,6 +17,8 @@ import {
 } from '../services/authUserSessionService.js';
 
 import { comparePasswords } from '../utils/password.js';
+
+import { generateAuthUrl } from '../utils/googleOAuth2.js';
 
 export const getAuthController = async (req, res) => {
   res.send({
@@ -119,6 +122,30 @@ export const refreshAuthUserSessionController = async (req, res) => {
     message: 'Successfully refreshed a session!',
     data: {
       accessToken: authUserSession.accessToken,
+    },
+  });
+};
+
+export const getGoogleOAuthUrlController = async (req, res) => {
+  const url = generateAuthUrl();
+  res.json({
+    status: 200,
+    message: 'Successfully get Google OAuth url!',
+    data: {
+      url,
+    },
+  });
+};
+
+export const loginWithGoogleController = async (req, res) => {
+  const session = await loginOrSignupWithGoogle(req.body.code);
+  setupAuthUserSessionCookies(res, session);
+
+  res.json({
+    status: 200,
+    message: 'Successfully logged in via Google OAuth!',
+    data: {
+      accessToken: session.accessToken,
     },
   });
 };
