@@ -14,7 +14,10 @@ tags:
 servers:
   - url: http://localhost:8080
   - url: https://watertracker-app-spy2.onrender.com
-# paths:
+paths:
+  /users/data:
+    get:
+      $ref: ../swagger/paths/users/data/get.yaml
 #  добавлять пути
 components:
   securitySchemes:

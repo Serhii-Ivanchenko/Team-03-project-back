@@ -5,6 +5,6 @@ import { controllerWrapper } from '../utils/controllerWrapper.js';
 
 const router = Router();
 
-router.get('/user', auth, controllerWrapper(authDataUserRouterController));
+router.get('/data', auth, controllerWrapper(authDataUserRouterController));
 
 export default router;

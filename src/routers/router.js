@@ -15,10 +15,9 @@ router.use('/users', authUserRouter);
 // router.use('/users', authUserResetRouter);
 router.use('/users', authGoogleRouter);
 // router.use('/api-docs', swaggerDocs());
+router.use('/users', authDataUserRouter);
 
 router.use('/water/all', waterDataRouter);
 router.use('/water', auth, waterDataRouter);
-
-router.use('/auth', authDataUserRouter);
 
 export default router;
