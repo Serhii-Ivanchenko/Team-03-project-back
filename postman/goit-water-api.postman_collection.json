@@ -8,13 +8,398 @@
   },
   "item": [
     {
+      "name": "Users",
+      "item": [
+        {
+          "name": "users",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    // \"name\":\"test\",\r\n    \"email\":\"email.test@test.net\",\r\n    \"password\":\"testPassword\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{domain}}/users/users",
+              "host": ["{{domain}}"],
+              "path": ["users", "users"],
+              "query": [
+                {
+                  "key": "user",
+                  "value": "slavko",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = JSON.parse(responseBody);\r",
+                  "pm.collectionVariables.set(\"accessToken\", json.data.accessToken);\r",
+                  "pm.environment.set(\"accessToken\", json.data.accessToken);"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"email.test@test.net\",\r\n    \"password\":\"testPassword\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{domain}}/users/login",
+              "host": ["{{domain}}"],
+              "path": ["users", "login"],
+              "query": [
+                {
+                  "key": "user",
+                  "value": "slavko",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "refresh",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = JSON.parse(responseBody);\r",
+                  "pm.collectionVariables.set(\"accessToken\", json.data.accessToken);\r",
+                  "pm.environment.set(\"accessToken\", json.data.accessToken);"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"buboot.online@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{domain}}/users/refresh",
+              "host": ["{{domain}}"],
+              "path": ["users", "refresh"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\":\"buboot.online@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/logout",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["auth", "logout"],
+              "query": [
+                {
+                  "key": "user",
+                  "value": "slavko",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"name\":\"test2\",\r\n    \"email\":\"email.test2@test.net\",\r\n    \"password\":\"testPassword\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{domain}}/users/register",
+              "host": ["{{domain}}"],
+              "path": ["users", "register"],
+              "query": [
+                {
+                  "key": "user",
+                  "value": "slavko",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{domain}}/user",
+              "host": ["{{domain}}"],
+              "path": ["user"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{domain}}/user",
+              "host": ["{{domain}}"],
+              "path": ["user"]
+            }
+          },
+          "response": [
+            {
+              "name": "data",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"water-User\",\r\n    \"email\": \"water.user@goit.net\",\r\n    \"gender\": \"woman\",\r\n    \"photo\": null,\r\n    \"weight\": 0,\r\n    \"activeTime\": 4,\r\n    \"dailyNorm\": 1700\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{domain}}/user",
+                  "host": ["{{domain}}"],
+                  "path": ["user"]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            },
+            {
+              "name": "photo",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "",
+                      "type": "text"
+                    },
+                    {
+                      "key": "photo",
+                      "type": "file",
+                      "src": "/C:/Users/vbutkevich/AppData/Local/Postman/Squirrel-Update.log"
+                    },
+                    {
+                      "key": "email",
+                      "value": "",
+                      "description": "optional",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "gender",
+                      "value": "",
+                      "description": "optional: enum:[woman,man] default \"woman\"",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "weight",
+                      "value": "",
+                      "description": "optional: default 0",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "activetime",
+                      "value": "",
+                      "description": "oprional default 0",
+                      "type": "text",
+                      "disabled": true
+                    },
+                    {
+                      "key": "dailyNorm",
+                      "value": "",
+                      "description": "optional default 1700",
+                      "type": "text",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{domain}}/user",
+                  "host": ["{{domain}}"],
+                  "path": ["user"]
+                }
+              },
+              "_postman_previewlanguage": null,
+              "header": null,
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Water",
       "item": [
         {
-          "name": "add",
+          "name": "all",
           "request": {
             "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "{{domain}}/water/all",
+              "host": ["{{domain}}"],
+              "path": ["water", "all"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "add",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"value\":555,\r\n    \"date\":\"2024-09-01\"\r\n    // \"time\":\"11:11\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{domain}}/water",
+              "host": ["{{domain}}"],
+              "path": ["water"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"value\":555,\r\n    \"date\":\"2024-09-11\",\r\n    \"time\":\"11:11\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{domain}}/water/66e2fe1a5e804c48b9fd0748",
+              "host": ["{{domain}}"],
+              "path": ["water", "66e2fe1a5e804c48b9fd0748"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"value\":555,\r\n    \"date\":\"2024-09-11\",\r\n    \"time\":\"11:11\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{domain}}/water/66e2fe1a5e804c48b9fd0748",
+              "host": ["{{domain}}"],
+              "path": ["water", "66e2fe1a5e804c48b9fd0748"]
+            }
           },
           "response": []
         },
@@ -22,7 +407,25 @@
           "name": "day",
           "request": {
             "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "{{domain}}/water/day/{{date}}",
+              "host": ["{{domain}}"],
+              "path": ["water", "day", "{{date}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "day :DATE",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{domain}}/water/day/{{date}}",
+              "host": ["{{domain}}"],
+              "path": ["water", "day", "{{date}}"]
+            }
           },
           "response": []
         },
@@ -30,23 +433,25 @@
           "name": "month",
           "request": {
             "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "{{domain}}/water/month",
+              "host": ["{{domain}}"],
+              "path": ["water", "month"]
+            }
           },
           "response": []
         },
         {
-          "name": "all",
+          "name": "month :DATE",
           "request": {
             "method": "GET",
-            "header": []
-          },
-          "response": []
-        },
-        {
-          "name": "customers",
-          "request": {
-            "method": "GET",
-            "header": []
+            "header": [],
+            "url": {
+              "raw": "{{domain}}/water/month/{{date}}",
+              "host": ["{{domain}}"],
+              "path": ["water", "month", "{{date}}"]
+            }
           },
           "response": []
         }
@@ -121,7 +526,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n      \"token\": \"\",\r\n        \"password\": \"\"\r\n}        ",
+                  "raw": "{\r\n      \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmM2M2M4Mjc0ZTU4ZWZhZmY2ZGM4NWMiLCJlbWFpbCI6ImJ1Ym9vdC5vbmxpbmVAZ21haWwuY29tIiwiaWF0IjoxNzI0NDI2MDg0LCJleHAiOjE3MjQ0MjY5ODR9.ziVrhnxiN80F5y9DKUU4cYkLM487V3fGh5ret6YH1po\",\r\n        \"password\": \"222\"\r\n}        ",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -212,10 +617,8 @@
                   }
                 },
                 "url": {
-                  "raw": "http://localhost:3000/auth/users",
-                  "protocol": "http",
-                  "host": ["localhost"],
-                  "port": "3000",
+                  "raw": "{{domain}}/auth/users",
+                  "host": ["{{domain}}"],
                   "path": ["auth", "users"],
                   "query": [
                     {
@@ -395,7 +798,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\":\"buboot.online@gmail.com\",\r\n     \"password\":\"\"\r\n}",
+              "raw": "{\r\n    \"email\":\"buboot.online@gmail.com\",\r\n     \"password\":\"222\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -595,6 +998,10 @@
       "key": "render",
       "value": "https://contacts-app-p90i.onrender.com",
       "type": "string"
+    },
+    {
+      "key": "date",
+      "value": "date"
     }
   ]
 }
