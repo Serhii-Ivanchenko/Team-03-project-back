@@ -6,6 +6,7 @@ import {
   createAuthUserService,
   logoutAuthUserService,
   loginOrSignupWithGoogle,
+  updateUser,
 } from '../services/authUserService.js';
 import {
   getAuthUserSessionById,
@@ -19,6 +20,7 @@ import {
 import { comparePasswords } from '../utils/password.js';
 
 import { generateAuthUrl } from '../utils/googleOAuth2.js';
+import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
 
 export const getAuthController = async (req, res) => {
   res.send({
@@ -146,6 +148,31 @@ export const loginWithGoogleController = async (req, res) => {
     message: 'Successfully logged in via Google OAuth!',
     data: {
       accessToken: session.accessToken,
+    },
+  });
+};
+
+export const patchUserPhotoController = async (req, res) => {
+  const { userId } = req.params;
+
+  if (!req.file) {
+    throw createHttpError(400, 'No file uploaded');
+  }
+
+  const photoUrl = await saveFileToCloudinary(req.file);
+
+  const updatedUser = await updateUser(userId, { photo: photoUrl });
+
+  if (!updatedUser) {
+    throw createHttpError(404, 'User not found');
+  }
+
+  res.json({
+    status: 200,
+    message: 'Successfully updated user photo!',
+    data: {
+      userId: updatedUser._id,
+      photo: updatedUser.photo,
     },
   });
 };

@@ -12,8 +12,12 @@ import {
   registerAuthUserController,
   refreshAuthUserSessionController,
   getAuthUsersSessionsController,
+  patchUserPhotoController,
 } from '../controllers/authUserController.js';
 import { validateBody } from '../middlewares/validateBody.js';
+import multer from 'multer';
+
+const upload = multer({ dest: 'uploads/' });
 
 const router = Router();
 
@@ -38,5 +42,11 @@ router.post(
 router.post('/logout', controllerWrapper(logoutAuthUserController));
 
 router.post('/refresh', controllerWrapper(refreshAuthUserSessionController));
+
+router.patch(
+  '/:userId/photo',
+  upload.single('photo'),
+  controllerWrapper(patchUserPhotoController),
+);
 
 export default router;
