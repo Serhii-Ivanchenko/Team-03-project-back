@@ -17,7 +17,8 @@ const userSchema = new Schema(
     photo: {
       type: String,
       required: false,
-      default: null,
+      default:
+        'https://res.cloudinary.com/dcftarozu/image/upload/v1726306975/x4vbd01sgp1vlylokwhv.png',
     },
 
     weight: {
