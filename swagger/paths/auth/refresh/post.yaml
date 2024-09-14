@@ -8,17 +8,6 @@ security:
   - bearerAuth: []
 responses:
   '200':
-    description: Password successfully reset
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            status:
-              type: integer
-              example: 200
-            message:
-              type: string
-              example: Password was successfully reset
+    $ref: 200.yaml
   '401':
-    $ref: '../../../components/responses/401.yaml'
+    $ref: 401.yaml

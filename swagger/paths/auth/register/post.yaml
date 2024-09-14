@@ -5,24 +5,10 @@ operationId: registerUser
 description: 'Register user'
 security:
   - bearerAuth: []
+requestBody:
+  $ref: ..\request-body.yaml
 responses:
-  '200':
-    description: 'Register user'
-    content:
-      application/json:
-        schema:
-          type: object
-          required:
-            - status
-            - message
-            - data
-          properties:
-            status:
-              type: integer
-              example: 200
-            message:
-              type: string
-              example: 'Successfully registered a user!'
-            data:
-              type: object
-              $ref: ../../../components/schemas/register.yaml
+  '201':
+    $ref: 201.yaml
+  '409':
+    $ref: 409.yaml

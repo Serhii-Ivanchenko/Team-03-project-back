@@ -1,4 +1,4 @@
-description: Unauthorized error
+description: Created
 content:
   application/json:
     schema:
@@ -10,15 +10,15 @@ content:
       properties:
         status:
           type: integer
-          example: 401
+          example: 201
         message:
           type: string
-          example: UnauthorizedError
+          example: "Successfully registered a user!"
         data:
           type: object
           required:
-            - message
+            - email
           properties:
-            message:
+            email:
               type: string
-              example: 'Access token expired'
+              example: "buboot.online@gmail.com"
