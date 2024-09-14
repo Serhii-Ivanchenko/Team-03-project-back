@@ -30,8 +30,6 @@ export const updateWaterItemService = async (
       ...options,
     },
   );
-  console.log({ rawResult });
-
   if (!rawResult || !rawResult.value) return null;
 
   return {
@@ -64,8 +62,6 @@ export const getMonthWaterDataService = async (userId, date) => {
   const monthDates = getMonthDates(date);
   const minDate = monthDates.som;
   const maxDate = monthDates.eom;
-  console.log({ monthDates });
-  console.log({ minDate, maxDate });
 
   const result = await WaterDataCollection.aggregate([
     {
@@ -94,12 +90,10 @@ export const getMonthWaterDataService = async (userId, date) => {
       $sort: { '_id.userId': 1, '_id.date': 1 },
     },
   ]);
-  console.log({ result });
   const waterData = result.map((item) => ({
     date: item._id.date,
     value: item.value,
   }));
-  console.log({ waterData });
 
   const monthDays = getAllDaysInMonth(date);
   const waterDataMap = new Map(waterData.map((item) => [item.date, item]));
