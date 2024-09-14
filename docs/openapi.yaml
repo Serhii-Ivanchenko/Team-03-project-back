@@ -9,12 +9,15 @@ info:
 tags:
   - name: Water
     description: Operations about water.
-  - name: Auth
+  - name: Users
     description: Auth operations.
 servers:
   - url: http://localhost:8080
   - url: https://watertracker-app-spy2.onrender.com
-# paths:
+paths:
+  /users/data:
+    get:
+      $ref: ../swagger/paths/users/data/get.yaml
 #  добавлять пути
 components:
   securitySchemes:
