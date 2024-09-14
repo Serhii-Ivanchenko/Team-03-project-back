@@ -39,4 +39,5 @@ router.post('/logout', controllerWrapper(logoutAuthUserController));
 
 router.post('/refresh', controllerWrapper(refreshAuthUserSessionController));
 
+
 export default router;
