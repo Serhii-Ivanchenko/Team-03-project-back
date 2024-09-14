@@ -10,9 +10,9 @@ import waterDataRouter from './waterDataRouter.js';
 
 const router = Router();
 
-router.use('/users', authUserRouter);
+router.use('/auth', authUserRouter);
 // router.use('/users', authUserResetRouter);
-router.use('/users', authGoogleRouter);
+router.use('/auth/google', authGoogleRouter);
 // router.use('/api-docs', swaggerDocs());
 
 router.use('/water/all', waterDataRouter);
