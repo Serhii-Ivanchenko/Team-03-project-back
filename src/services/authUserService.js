@@ -54,3 +54,18 @@ export const loginOrSignupWithGoogle = async (code) => {
 
   return authUserSession;
 };
+
+export const updateUser = async (userId, payload) => {
+  const rawResult = await UserCollection.findOneAndUpdate(
+    { _id: userId },
+    payload,
+    {
+      new: true,
+      includeResultMetadata: true,
+    },
+  );
+
+  if (!rawResult || !rawResult.value) return null;
+
+  return rawResult.value;
+};
