@@ -1,4 +1,4 @@
-description: OK
+description: Refresh session
 content:
   application/json:
     schema:

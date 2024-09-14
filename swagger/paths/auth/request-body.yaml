@@ -3,6 +3,9 @@
     application/json:
       schema:
         type: object
+        required:
+          - email
+          - password
         properties:
           email:
             type: string
@@ -12,4 +15,4 @@
             type: string
             format: password
             example: Password123!
-  required: true
+

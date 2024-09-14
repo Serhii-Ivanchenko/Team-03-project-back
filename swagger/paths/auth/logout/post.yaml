@@ -8,8 +8,7 @@ security:
   - bearerAuth: []
 responses:
   '204':
-    $ref: 204.yaml
-    # description: Successfully logged out
+    description: 'Successfully logout the user'
   401:
     $ref: ..\..\..\components\responses\401.yaml
 

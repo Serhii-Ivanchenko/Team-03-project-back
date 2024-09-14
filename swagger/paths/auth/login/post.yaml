@@ -8,41 +8,8 @@ security:
   - bearerAuth: []
 requestBody:
   $ref: ..\request-body.yaml
-  # content:
-  #   application/json:
-  #     schema:
-  #       type: object
-  #       properties:
-  #         email:
-  #           type: string
-  #           format: email
-  #           example: user@example.com
-  #         password:
-  #           type: string
-  #           format: password
-  #           example: Password123!
-  # required: true
 responses:
   '200':
     $ref: 200.yaml
-    # description: Successfully logged in an user!
-    # content:
-    #   application/json:
-    #     schema:
-    #       type: object
-    #       required:
-    #         - status
-    #         - message
-    #         - data
-    #       properties:
-    #         status:
-    #           type: integer
-    #           example: 200
-    #         message:
-    #           type: string
-    #           example: 'User data retrieved successfully'
-    #         # data:
-    #         #   type: object
-    #         #   $ref: ../../../components/schemas/user.yaml
   '401':
     $ref: 401.yaml
