@@ -26,3 +26,6 @@ responses:
             data:
               type: object
               $ref: ../../../components/schemas/user.yaml
+  401:
+    $ref: ..\..\..\components\responses\401.yaml
+

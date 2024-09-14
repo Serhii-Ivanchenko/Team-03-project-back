@@ -123,6 +123,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/204"
+          },
+          "401": {
+            "$ref": "#/components/responses/401-2"
           }
         }
       }
@@ -169,6 +172,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/401-2"
           }
         }
       }
@@ -343,9 +349,7 @@
                 "data": {
                   "type": "object",
                   "required": [
-                    {
-                      "message": null
-                    }
+                    "message"
                   ],
                   "properties": {
                     "message": {

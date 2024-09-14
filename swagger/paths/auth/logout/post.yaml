@@ -10,4 +10,6 @@ responses:
   '204':
     $ref: 204.yaml
     # description: Successfully logged out
+  401:
+    $ref: ..\..\..\components\responses\401.yaml
 
