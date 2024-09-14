@@ -1,0 +1,15 @@
+tags:
+  - Auth
+summary: Login user
+operationId: loginUser
+description: |
+  Logs in a user and returns an access token. Refresh token is set in cookies.
+security:
+  - bearerAuth: []
+requestBody:
+  $ref: ..\request-body.yaml
+responses:
+  '200':
+    $ref: 200.yaml
+  '401':
+    $ref: 401.yaml

@@ -1,0 +1,14 @@
+tags:
+  - Auth
+summary: Register User
+operationId: registerUser
+description: 'Register user'
+security:
+  - bearerAuth: []
+requestBody:
+  $ref: ..\request-body.yaml
+responses:
+  '201':
+    $ref: 201.yaml
+  '409':
+    $ref: 409.yaml
