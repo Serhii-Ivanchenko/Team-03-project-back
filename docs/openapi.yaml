@@ -39,22 +39,25 @@ paths:
 
 # water:
   /water:
+    post:
+      $ref: ../swagger/paths/water/add/post.yaml
+  /water/{id}:
     get:
       $ref: ../swagger/paths/water/get/get.yaml
-    post:
+    patch:
       $ref: ../swagger/paths/water/add/post.yaml
     delete:
       $ref: ../swagger/paths/water/del/del.yaml
   /water/day:
     get:
       $ref: ../swagger/paths/water/day/get.yaml
-  /water/day/{date}:
+  /water/day/{date:yyyy-MM-dd}:
     get:
       $ref: ../swagger/paths/water/day/getByDate.yaml
   /water/month:
     get:
       $ref: ../swagger/paths/water/month/get.yaml
-  /water/month/{date}:
+  /water/month/{date:yyyy-MM[-dd]}:
     get:
       $ref: ../swagger/paths/water/month/getByDate.yaml
 
