@@ -9,6 +9,6 @@ requestBody:
   $ref: ..\request-body.yaml
 responses:
   '201':
-    $ref: 201.yaml
+    $ref: register.201.yaml
   '409':
-    $ref: 409.yaml
+    $ref: register.409.yaml

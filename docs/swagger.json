@@ -11,6 +11,9 @@
   },
   "servers": [
     {
+      "url": "http://localhost:3000"
+    },
+    {
       "url": "http://localhost:8080"
     },
     {
@@ -50,10 +53,10 @@
         },
         "responses": {
           "201": {
-            "$ref": "#/components/responses/201"
+            "$ref": "#/components/responses/register.201"
           },
           "409": {
-            "$ref": "#/components/responses/409"
+            "$ref": "#/components/responses/register.409"
           }
         }
       }
@@ -76,10 +79,10 @@
         },
         "responses": {
           "200": {
-            "$ref": "#/components/responses/200"
+            "$ref": "#/components/responses/login.200"
           },
           "401": {
-            "$ref": "#/components/responses/401"
+            "$ref": "#/components/responses/login.401"
           }
         }
       }
@@ -99,10 +102,10 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/components/responses/200-2"
+            "$ref": "#/components/responses/refresh.200"
           },
           "401": {
-            "$ref": "#/components/responses/401-2"
+            "$ref": "#/components/responses/refresh.401"
           }
         }
       }
@@ -122,10 +125,10 @@
         ],
         "responses": {
           "204": {
-            "$ref": "#/components/responses/204"
+            "description": "Successfully logout the user"
           },
           "401": {
-            "$ref": "#/components/responses/401-2"
+            "$ref": "#/components/responses/401"
           }
         }
       }
@@ -174,7 +177,7 @@
             }
           },
           "401": {
-            "$ref": "#/components/responses/401-2"
+            "$ref": "#/components/responses/401"
           }
         }
       }
@@ -193,6 +196,10 @@
           "application/json": {
             "schema": {
               "type": "object",
+              "required": [
+                "email",
+                "password"
+              ],
               "properties": {
                 "email": {
                   "type": "string",
@@ -207,13 +214,12 @@
               }
             }
           }
-        },
-        "required": true
+        }
       }
     },
     "responses": {
-      "200": {
-        "description": "OK",
+      "401": {
+        "description": "Unauthorized error",
         "content": {
           "application/json": {
             "schema": {
@@ -226,21 +232,21 @@
               "properties": {
                 "status": {
                   "type": "integer",
-                  "example": 200
+                  "example": 401
                 },
                 "message": {
                   "type": "string",
-                  "example": "Successfully logged in an user!"
+                  "example": "UnauthorizedError"
                 },
                 "data": {
                   "type": "object",
                   "required": [
-                    "accessToken"
+                    "message"
                   ],
                   "properties": {
-                    "accessToken": {
+                    "message": {
                       "type": "string",
-                      "example": "vk3kIczmM27VurTViXbGCQvpu97eH8f7BAIwp1qA"
+                      "example": "Access token expired"
                     }
                   }
                 }
@@ -249,7 +255,7 @@
           }
         }
       },
-      "201": {
+      "register.201": {
         "description": "Created",
         "content": {
           "application/json": {
@@ -286,47 +292,7 @@
           }
         }
       },
-      "204": {
-        "description": "Not connect"
-      },
-      "401": {
-        "description": "Unauthorized error",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "required": [
-                "status",
-                "message",
-                "data"
-              ],
-              "properties": {
-                "status": {
-                  "type": "integer",
-                  "example": 401
-                },
-                "message": {
-                  "type": "string",
-                  "example": "UnauthorizedError"
-                },
-                "data": {
-                  "type": "object",
-                  "required": [
-                    "message"
-                  ],
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Unauthorized"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "409": {
+      "register.409": {
         "description": "Unauthorized error",
         "content": {
           "application/json": {
@@ -363,8 +329,82 @@
           }
         }
       },
-      "200-2": {
+      "login.200": {
         "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Successfully logged in an user!"
+                },
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "accessToken"
+                  ],
+                  "properties": {
+                    "accessToken": {
+                      "type": "string",
+                      "example": "vk3kIczmM27VurTViXbGCQvpu97eH8f7BAIwp1qA"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "login.401": {
+        "description": "Unauthorized error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 401
+                },
+                "message": {
+                  "type": "string",
+                  "example": "UnauthorizedError"
+                },
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "refresh.200": {
+        "description": "Refresh session",
         "content": {
           "application/json": {
             "schema": {
@@ -400,7 +440,7 @@
           }
         }
       },
-      "401-2": {
+      "refresh.401": {
         "description": "Unauthorized error",
         "content": {
           "application/json": {
