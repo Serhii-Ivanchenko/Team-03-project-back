@@ -43,7 +43,6 @@ export const getAuthUserSession = async (userId) => {
     ...sessionObject,
     userId,
   });
-  console.log({ authUserSession });
   return authUserSession;
 };
 

@@ -20,9 +20,6 @@ export const getWaterDataController = async (req, res) => {
 };
 
 export const createWaterDataController = async (req, res) => {
-  console.log('createWaterDataController:----------------------------');
-  console.log(req.waterData);
-
   const data = await addWaterDataService(req.waterData);
   res.status(201).json({
     status: 201,
@@ -32,14 +29,11 @@ export const createWaterDataController = async (req, res) => {
 };
 
 export const upsertWaterItemController = async (req, res) => {
-  console.log('upsertWaterItemByIdController:');
   const { id } = req.params;
   const userId = req.authUser._id;
-  // const result = await updateWaterItemService(req.waterData, {
   const result = await updateWaterItemService(id, userId, req.body, {
     upsert: true,
   });
-  console.log({ result });
 
   if (!result) {
     throw createHttpError(404, 'WaterItem not found');
@@ -67,15 +61,10 @@ export const deleteWaterItemByIdController = async (req, res, next) => {
 
 export const getDayWaterDataController = async (req, res, next) => {
   let { date } = req.params;
-  console.log({ params: req.params });
-
   const user = req.authUser;
   const userId = user._id;
-  console.log({ userId });
-  console.log({ date });
 
   const waterData = await getDayWaterDataService(userId, date);
-  console.log({ waterData });
 
   res.send({
     userId,
@@ -89,12 +78,7 @@ export const getMonthWaterDataController = async (req, res, next) => {
   const user = req.authUser;
   const userId = user._id;
 
-  console.log({ date });
-  console.log({ user });
-  console.log({ userId });
-
   const waterData = await getMonthWaterDataService(userId, date);
-  console.log({ waterData });
 
   res.send({
     userId,

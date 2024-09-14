@@ -4,9 +4,6 @@ import { getAuthUserSessionByAccessToken } from '../services/authUserSessionServ
 
 export async function auth(req, res, next) {
   const { authorization } = req.headers;
-//   const header_authorization = req.get('Authorization');
-//   console.log('header_authorization:', header_authorization);
-//   console.log('req.headers:', req.headers);
 
   if (typeof authorization !== 'string') {
     return next(createHttpError(401, 'Please provide Authorization header'));
