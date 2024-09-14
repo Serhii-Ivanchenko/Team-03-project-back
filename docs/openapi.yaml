@@ -32,11 +32,32 @@ paths:
     post:
       $ref: ../swagger/paths/auth/logout/post.yaml
 
-# users:
+# user:
   /users/data:
     get:
       $ref: ../swagger/paths/users/data/get.yaml
-#  добавлять пути
+
+# water:
+  /water:
+    get:
+      $ref: ../swagger/paths/water/get/get.yaml
+    post:
+      $ref: ../swagger/paths/water/add/post.yaml
+    delete:
+      $ref: ../swagger/paths/water/del/del.yaml
+  /water/day:
+    get:
+      $ref: ../swagger/paths/water/day/get.yaml
+  /water/day/{date}:
+    get:
+      $ref: ../swagger/paths/water/day/getByDate.yaml
+  /water/month:
+    get:
+      $ref: ../swagger/paths/water/month/get.yaml
+  /water/month/{date}:
+    get:
+      $ref: ../swagger/paths/water/month/getByDate.yaml
+
 components:
   securitySchemes:
     bearerAuth:

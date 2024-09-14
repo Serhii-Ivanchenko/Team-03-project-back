@@ -1,0 +1,14 @@
+tags:
+  - Water
+summary: Add Water entry
+operationId: addWaerItem
+description: 'Register user'
+security:
+  - bearerAuth: []
+requestBody:
+  # $ref: ..\request-body.yaml
+responses:
+  # '201':
+  #   $ref: register.201.yaml
+  # '409':
+  #   $ref: register.409.yaml
