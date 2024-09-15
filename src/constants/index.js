@@ -16,3 +16,17 @@ export const CLOUDINARY = {
   API_KEY: 'API_KEY',
   API_SECRET: 'API_SECRET',
 };
+
+export const SMTP = {
+  HOST: 'SMTP_HOST',
+  PORT: 'SMTP_PORT',
+  USER: 'SMTP_USER',
+  PASSWORD: 'SMTP_PASSWORD',
+  FROM: 'SMTP_FROM',
+  APP_DOMAIN: 'APP_DOMAIN',
+  JWT_SECRET: 'JWT_SECRET',
+};
+
+export const JWT_TOKEN_TIME = {
+  EMAIL_RESET: '15m',
+};

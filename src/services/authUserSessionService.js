@@ -67,3 +67,6 @@ export const setupAuthUserSessionCookies = (res, session) => {
     expires,
   });
 };
+
+export const deleteSessionByUserId = (userId) =>
+  AuthUserSessionCollection.findOneAndDelete({ userId });
