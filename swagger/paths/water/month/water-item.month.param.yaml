@@ -1,0 +1,14 @@
+# parameters:
+- in: path
+  name: date
+  required: true
+  schema:
+    type: string
+    example: 2024-09-09
+    description: 'full format:[yyyy-MM-dd] - "2024-09-09" or short format:[yyyy-MM] - "2024-09"'
+# - in: path
+#   name: date (yyyy-MM-dd)
+#   required: true
+#   schema:
+#     type: string
+#     example: '2024-09-09'

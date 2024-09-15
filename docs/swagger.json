@@ -348,7 +348,7 @@
           "Water"
         ],
         "summary": "Add Water item",
-        "operationId": "addWaerItem",
+        "operationId": "addWaterItem",
         "description": "Register user",
         "security": [
           {
@@ -356,12 +356,12 @@
           }
         ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/req.body.water-item"
+          "$ref": "#/components/requestBodies/water-item.req.body"
         },
         "responses": {
           "201": {
             "description": "Response containing user data",
-            "$ref": "#/components/responses/res.water-item.201"
+            "$ref": "#/components/responses/water-item.post.201"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -370,72 +370,36 @@
       }
     },
     "/water/{id}": {
-      "get": {
-        "tags": [
-          "Water"
-        ],
-        "summary": "Retrieve Water Data",
-        "operationId": "getWater",
-        "description": "Retrieves the parameters of a registered user",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Response containing user data",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 201
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Successfully created a water-item!"
-                    },
-                    "data": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/water-item"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/401"
-          }
-        }
-      },
       "patch": {
         "tags": [
           "Water"
         ],
-        "summary": "Add Water item",
-        "operationId": "addWaerItem",
-        "description": "Register user",
+        "summary": "Update Water Item",
+        "operationId": "patchWaterItem",
+        "description": "Update Water Item",
         "security": [
           {
             "bearerAuth": []
           }
         ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "65ca67e7ae7f10c88b598384"
+            }
+          }
+        ],
         "requestBody": {
-          "$ref": "#/components/requestBodies/req.body.water-item"
+          "$ref": "#/components/requestBodies/water-item.req.body"
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Response containing user data",
-            "$ref": "#/components/responses/res.water-item.201"
+            "$ref": "#/components/responses/water-item.patch.200"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -446,46 +410,34 @@
         "tags": [
           "Water"
         ],
-        "summary": "Retrieve Water Data",
-        "operationId": "delWater",
-        "description": "Retrieves the parameters of a registered user",
+        "summary": "Delete Water Item",
+        "operationId": "deleteWaterItem",
+        "description": "Delete",
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Response containing user data",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 200
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "User data retrieved successfully"
-                    },
-                    "data": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/user"
-                    }
-                  }
-                }
-              }
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "65ca67e7ae7f10c88b598384"
             }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
           },
           "401": {
             "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/water-item.delete.404"
           }
         }
       }
@@ -495,9 +447,9 @@
         "tags": [
           "Water"
         ],
-        "summary": "Retrieve Water Data",
+        "summary": "Retrieve Day Water Items by current date",
         "operationId": "getWaterDay",
-        "description": "Retrieves the parameters of a registered user",
+        "description": "Retrieve Day Water Items by current date of a registered user",
         "security": [
           {
             "bearerAuth": []
@@ -505,33 +457,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Response containing user data",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 200
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "User data retrieved successfully"
-                    },
-                    "data": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/user"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/water-item.day.200"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -544,43 +470,29 @@
         "tags": [
           "Water"
         ],
-        "summary": "Retrieve Water Data",
+        "summary": "Retrieve Day Water Items by specific date",
         "operationId": "getWaterDayByDate",
-        "description": "Retrieves the parameters of a registered user",
+        "description": "Retrieve Day Water Items by specific date of a registered user",
         "security": [
           {
             "bearerAuth": []
           }
         ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2024-09-09"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Response containing user data",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 200
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "User data retrieved successfully"
-                    },
-                    "data": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/user"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/water-item.day.200"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -593,9 +505,9 @@
         "tags": [
           "Water"
         ],
-        "summary": "Retrieve Water Data",
+        "summary": "Retrieve Month Water Items by current month date",
         "operationId": "getWaterMonth",
-        "description": "Retrieves the parameters of a registered user",
+        "description": "Retrieve Month Water Items by current month date of a registered user",
         "security": [
           {
             "bearerAuth": []
@@ -603,33 +515,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Response containing user data",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 200
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "User data retrieved successfully"
-                    },
-                    "data": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/user"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/water-item.month.200"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -642,43 +528,29 @@
         "tags": [
           "Water"
         ],
-        "summary": "Retrieve Water Data",
+        "summary": "Retrieve Month Water Items by specific month date",
         "operationId": "getWaterMonthByDate",
-        "description": "Retrieves the parameters of a registered user",
+        "description": "Retrieve Month Water Items by specific month date of a registered user",
         "security": [
           {
             "bearerAuth": []
           }
         ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "2024-09-09",
+              "description": "full format:[yyyy-MM-dd] - \"2024-09-09\" or short format:[yyyy-MM] - \"2024-09\""
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Response containing user data",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "required": [
-                    "status",
-                    "message",
-                    "data"
-                  ],
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "example": 200
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "User data retrieved successfully"
-                    },
-                    "data": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/user"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/water-item.month.200"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -720,31 +592,31 @@
           }
         }
       },
-      "req.body.water-item": {
+      "water-item.req.body": {
         "content": {
           "application/json": {
             "schema": {
               "type": "object",
               "required": [
-                "date",
-                "time",
                 "value"
               ],
               "properties": {
-                "date": {
-                  "description": "Date",
-                  "type": "string",
-                  "example": "2024-09-09"
-                },
-                "time": {
-                  "description": "Time",
-                  "type": "string",
-                  "example": "22:22"
-                },
                 "value": {
                   "description": "Value",
                   "type": "string",
                   "example": "250"
+                },
+                "time": {
+                  "description": "Time",
+                  "type": "string",
+                  "example": "22:22",
+                  "default": null
+                },
+                "date": {
+                  "description": "Date",
+                  "type": "string",
+                  "example": "2024-09-09",
+                  "default": null
                 }
               }
             }
@@ -1036,7 +908,7 @@
           }
         }
       },
-      "res.water-item.201": {
+      "water-item.post.201": {
         "content": {
           "application/json": {
             "schema": {
@@ -1058,6 +930,169 @@
                 "data": {
                   "type": "object",
                   "$ref": "#/components/schemas/water-item"
+                }
+              }
+            }
+          }
+        }
+      },
+      "water-item.delete.404": {
+        "description": "User not found!",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "message": {
+                  "type": "string",
+                  "example": "NotFoundError"
+                },
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "WaterItem by id:[65ca67e7ae7f10c88b598384] not exists"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "water-item.patch.200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 200
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Successfully upserted a waterItem!"
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/water-item"
+                }
+              }
+            }
+          }
+        }
+      },
+      "water-item.day.200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "userId",
+                "dayliNorm",
+                "data"
+              ],
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "example": "66e2e3423073bfb71be21f81"
+                },
+                "dayliNorm": {
+                  "type": "number",
+                  "example": 1700
+                },
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "date",
+                    "time",
+                    "value"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "userId",
+                      "type": "string",
+                      "example": "66e33067ec54bcf268b5f78f"
+                    },
+                    "date": {
+                      "description": "Date",
+                      "type": "string",
+                      "example": "2024-09-09"
+                    },
+                    "time": {
+                      "description": "time",
+                      "type": "string",
+                      "example": "22:22"
+                    },
+                    "value": {
+                      "description": "Value",
+                      "type": "number",
+                      "example": 250
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "water-item.month.200": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "userId",
+                "dayliNorm",
+                "data"
+              ],
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "example": "66e2e3423073bfb71be21f81"
+                },
+                "dayliNorm": {
+                  "type": "number",
+                  "example": 1700
+                },
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "date",
+                    "value"
+                  ],
+                  "properties": {
+                    "date": {
+                      "description": "Date",
+                      "type": "string",
+                      "example": "2024-09-09"
+                    },
+                    "value": {
+                      "description": "Value",
+                      "type": "string",
+                      "example": "250"
+                    }
+                  }
                 }
               }
             }
@@ -1141,6 +1176,7 @@
         "type": "object",
         "required": [
           "_id",
+          "userId",
           "date",
           "time",
           "value"
@@ -1148,6 +1184,11 @@
         "properties": {
           "_id": {
             "description": "Backend-generated unique identifier.",
+            "type": "string",
+            "example": "66e2e3423073bfb71be21f81"
+          },
+          "userId": {
+            "description": "userId",
             "type": "string",
             "example": "66e2e3423073bfb71be21f81"
           },
@@ -1163,8 +1204,8 @@
           },
           "value": {
             "description": "Value",
-            "type": "string",
-            "example": "250"
+            "type": "number",
+            "example": 250
           }
         }
       }

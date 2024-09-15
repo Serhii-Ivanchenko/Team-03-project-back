@@ -1,0 +1,31 @@
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - userId
+        - dayliNorm
+        - data
+      properties:
+        userId:
+          type: string
+          example: '66e2e3423073bfb71be21f81'
+        dayliNorm:
+          type: number
+          example: 1700
+        data:
+          type: object
+          # $ref: ../../../components/schemas/water-item.yaml
+          required:
+            - date
+            - value
+          properties:
+            date:
+              description: 'Date'
+              type: string
+              example: '2024-09-09'
+              # default: null
+            value:
+              description: 'Value'
+              type: string
+              example: '250'

@@ -1,0 +1,7 @@
+# parameters:
+- in: path
+  name: date
+  required: true
+  schema:
+    type: string
+    example: '2024-09-09'

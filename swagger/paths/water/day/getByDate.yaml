@@ -1,31 +1,33 @@
 tags:
   - Water
-summary: Retrieve Water Data
+summary: Retrieve Day Water Items by specific date
 operationId: getWaterDayByDate
-description: 'Retrieves the parameters of a registered user'
+description: 'Retrieve Day Water Items by specific date of a registered user'
 security:
   - bearerAuth: []
+parameters:
+  $ref: water-item.day.param.yaml
 responses:
   '200':
     description: 'Response containing user data'
-    content:
-      application/json:
-        schema:
-          type: object
-          required:
-            - status
-            - message
-            - data
-          properties:
-            status:
-              type: integer
-              example: 200
-            message:
-              type: string
-              example: 'User data retrieved successfully'
-            data:
-              type: object
-              $ref: ../../../components/schemas/user.yaml
+    $ref: water-item.day.200.yaml
+    # content:
+    #   application/json:
+    #     schema:
+    #       type: object[]
+    #       required:
+    #         - status
+    #         - message
+    #         - data
+    #       properties:
+    #         status:
+    #           type: integer
+    #           example: 200
+    #         message:
+    #           type: string
+    #           example: 'User data retrieved successfully'
+    #         data:
+    #           type: object
+    #           $ref: ../../../components/schemas/user.yaml
   401:
     $ref: ..\..\..\components\responses\401.yaml
-
