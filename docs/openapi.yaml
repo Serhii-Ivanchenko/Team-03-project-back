@@ -31,7 +31,7 @@ paths:
   /auth/logout:
     post:
       $ref: ../swagger/paths/auth/logout/post.yaml
-     
+
 # auth/google:
   /auth/google/get-oauth-url:
     get:
@@ -46,6 +46,12 @@ paths:
   /users/photo:
     patch:
       $ref: ../swagger/paths/users/photo/patch.yaml
+  /users/send-reset-email:
+    post:
+      $ref: ../swagger/paths/users/send-reset-email/post.yaml
+  /users/reset-pswrd:
+    post:
+      $ref: ../swagger/paths/users/reset-pswrd/post.yaml
 #  добавлять пути
 components:
   securitySchemes:
