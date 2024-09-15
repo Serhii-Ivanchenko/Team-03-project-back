@@ -41,7 +41,7 @@ responses:
               properties:
                 photo:
                   type: string
-                  example: 'https://cloudinary.com/photo.jpg'
+                  example: 'https://res.cloudinary.com/dcftarozu/image/upload/v1726336739/nyngek38xghmbjksx4i1.png'
   '400':
     description: No file uploaded
     content:
