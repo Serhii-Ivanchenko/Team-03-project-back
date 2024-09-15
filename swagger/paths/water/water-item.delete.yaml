@@ -1,0 +1,16 @@
+tags:
+  - Water
+summary: Delete Water Item
+operationId: deleteWaterItem
+description: 'Delete'
+security:
+  - bearerAuth: []
+parameters:
+  $ref: water-item.param.yaml
+responses:
+  204:
+    description: 'No Content' # Successfully deleted the contact
+  401:
+    $ref: ..\..\components\responses\401.yaml
+  404:
+    $ref: water-item.delete.404.yaml

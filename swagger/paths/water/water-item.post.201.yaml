@@ -1,0 +1,18 @@
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        - status
+        - message
+        - data
+      properties:
+        status:
+          type: integer
+          example: 201
+        message:
+          type: string
+          example: 'Successfully created a water-item!'
+        data:
+          type: object
+          $ref: ../../components/schemas/water-item.yaml

@@ -182,39 +182,37 @@
         }
       }
     },
-    "/water": {
+    "/users/send-reset-email": {
       "post": {
         "tags": [
-          "Water"
+          "Users"
         ],
-        "summary": "Add Water entry",
-        "operationId": "addWaerItem",
-        "description": "Register user",
-        "security": [
-          {
-            "bearerAuth": []
+        "summary": "Send password reset email",
+        "operationId": "sendResetEmail",
+        "description": "Send a password reset email to the specified user.",
+        "security": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email"
+                ],
+                "properties": {
+                  "email": {
+                    "description": "Email address of the user requesting the password reset.",
+                    "type": "string",
+                    "example": "admin@gmail.com"
+                  }
+                }
+              }
+            }
           }
-        ],
-        "requestBody": null,
-        "responses": null
-      }
-    },
-    "/water/{id}": {
-      "get": {
-        "tags": [
-          "Water"
-        ],
-        "summary": "Retrieve Water Data",
-        "operationId": "getWater",
-        "description": "Retrieves the parameters of a registered user",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
+        },
         "responses": {
           "200": {
-            "description": "Response containing user data",
+            "description": "Password reset email has been successfully sent.",
             "content": {
               "application/json": {
                 "schema": {
@@ -231,11 +229,183 @@
                     },
                     "message": {
                       "type": "string",
-                      "example": "User data retrieved successfully"
+                      "example": "Reset password email has been successfully sent."
                     },
                     "data": {
                       "type": "object",
-                      "$ref": "#/components/schemas/user"
+                      "example": {},
+                      "description": "Empty object to confirm the operation."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/404-userNotFound"
+          }
+        }
+      }
+    },
+    "/users/reset-pswrd": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Reset password",
+        "operationId": "resetPassword",
+        "description": "Reset the user password using a provided JWT token and new password.",
+        "security": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "password",
+                  "token"
+                ],
+                "properties": {
+                  "password": {
+                    "description": "New password for the user.",
+                    "type": "string",
+                    "example": "password"
+                  },
+                  "token": {
+                    "description": "JWT token used for password reset.",
+                    "type": "string",
+                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Y2UxOWMzZWUzMTg1ODNlMDQ1NTc0MSIsImVtYWlsIjoiZ29yZWxraW4uZWxlY3Ryb0BnbWFpbC5jb20iLCJpYXQiOjE3MjU1NzQwMzIsImV4cCI6MTcyNTU3NDMzMn0.KqPSB0Z0zvODGLOrQXNaPE14j97vysR9KsNdYAjveB0"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password has been successfully reset.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Password has been successfully reset."
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Empty object to confirm the operation.",
+                      "example": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token is expired or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 401
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Token is expired or invalid."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/404-userNotFound"
+          }
+        }
+      }
+    },
+    "/water": {
+      "post": {
+        "tags": [
+          "Water"
+        ],
+        "summary": "Add Water item",
+        "operationId": "addWaerItem",
+        "description": "Register user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/req.body.water-item"
+        },
+        "responses": {
+          "201": {
+            "description": "Response containing user data",
+            "$ref": "#/components/responses/res.water-item.201"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
+      }
+    },
+    "/water/{id}": {
+      "get": {
+        "tags": [
+          "Water"
+        ],
+        "summary": "Retrieve Water Data",
+        "operationId": "getWater",
+        "description": "Retrieves the parameters of a registered user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Response containing user data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 201
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully created a water-item!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/water-item"
                     }
                   }
                 }
@@ -251,7 +421,7 @@
         "tags": [
           "Water"
         ],
-        "summary": "Add Water entry",
+        "summary": "Add Water item",
         "operationId": "addWaerItem",
         "description": "Register user",
         "security": [
@@ -259,8 +429,18 @@
             "bearerAuth": []
           }
         ],
-        "requestBody": null,
-        "responses": null
+        "requestBody": {
+          "$ref": "#/components/requestBodies/req.body.water-item"
+        },
+        "responses": {
+          "201": {
+            "description": "Response containing user data",
+            "$ref": "#/components/responses/res.water-item.201"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -457,7 +637,7 @@
         }
       }
     },
-    "/water/month/{date:yyyy-MM[-dd]}": {
+    "/water/month/{date:yyyy-MM(-dd)}": {
       "get": {
         "tags": [
           "Water"
@@ -534,6 +714,37 @@
                   "type": "string",
                   "format": "password",
                   "example": "Password123!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "req.body.water-item": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "date",
+                "time",
+                "value"
+              ],
+              "properties": {
+                "date": {
+                  "description": "Date",
+                  "type": "string",
+                  "example": "2024-09-09"
+                },
+                "time": {
+                  "description": "Time",
+                  "type": "string",
+                  "example": "22:22"
+                },
+                "value": {
+                  "description": "Value",
+                  "type": "string",
+                  "example": "250"
                 }
               }
             }
@@ -800,6 +1011,58 @@
             }
           }
         }
+      },
+      "404-userNotFound": {
+        "description": "User not found!",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 404
+                },
+                "message": {
+                  "type": "string",
+                  "example": "User not found!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "res.water-item.201": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [
+                "status",
+                "message",
+                "data"
+              ],
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "example": 201
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Successfully created a water-item!"
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/water-item"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "schemas": {
@@ -871,6 +1134,37 @@
             "type": "number",
             "example": 2500,
             "default": 1700
+          }
+        }
+      },
+      "water-item": {
+        "type": "object",
+        "required": [
+          "_id",
+          "date",
+          "time",
+          "value"
+        ],
+        "properties": {
+          "_id": {
+            "description": "Backend-generated unique identifier.",
+            "type": "string",
+            "example": "66e2e3423073bfb71be21f81"
+          },
+          "date": {
+            "description": "Date",
+            "type": "string",
+            "example": "2024-09-09"
+          },
+          "time": {
+            "description": "Time",
+            "type": "string",
+            "example": "22:22"
+          },
+          "value": {
+            "description": "Value",
+            "type": "string",
+            "example": "250"
           }
         }
       }

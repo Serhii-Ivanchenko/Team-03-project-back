@@ -1,7 +1,7 @@
 tags:
   - Water
-summary: Retrieve Water Data
-operationId: delWater
+summary: Delete Water Item
+operationId: delWaterItem
 description: 'Retrieves the parameters of a registered user'
 security:
   - bearerAuth: []

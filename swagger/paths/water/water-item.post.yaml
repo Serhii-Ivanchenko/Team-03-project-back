@@ -1,15 +1,15 @@
 tags:
   - Water
 summary: Add Water item
-operationId: addWaerItem
+operationId: addWaterItem
 description: 'Register user'
 security:
   - bearerAuth: []
 requestBody:
-  $ref: ../water-item.req.body.yaml
+  $ref: water-item.req.body.yaml
 responses:
   '201':
     description: 'Response containing user data'
-    $ref: water-item.res.201.yaml
+    $ref: water-item.post.201.yaml
   401:
-    $ref: ..\..\..\components\responses\401.yaml
+    $ref: ..\..\components\responses\401.yaml
