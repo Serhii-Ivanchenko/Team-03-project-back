@@ -9,6 +9,6 @@ security:
 responses:
   '204':
     description: 'Successfully logout the user'
-  401:
+  '401':
     $ref: ..\..\..\components\responses\401.yaml
 

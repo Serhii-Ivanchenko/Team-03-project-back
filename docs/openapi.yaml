@@ -14,9 +14,11 @@ tags:
   - name: Water
     description: Operations about water.
 servers:
+  - url: http://localhost:3000
   - url: http://localhost:8080
   - url: https://watertracker-app-spy2.onrender.com
 paths:
+# auth:
   /auth/register:
     post:
       $ref: ../swagger/paths/auth/register/post.yaml
@@ -29,6 +31,8 @@ paths:
   /auth/logout:
     post:
       $ref: ../swagger/paths/auth/logout/post.yaml
+
+# users:
   /users/data:
     get:
       $ref: ../swagger/paths/users/data/get.yaml

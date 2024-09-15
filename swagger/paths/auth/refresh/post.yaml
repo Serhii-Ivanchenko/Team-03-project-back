@@ -8,6 +8,6 @@ security:
   - bearerAuth: []
 responses:
   '200':
-    $ref: 200.yaml
+    $ref: refresh.200.yaml
   '401':
-    $ref: 401.yaml
+    $ref: refresh.401.yaml

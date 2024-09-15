@@ -10,6 +10,6 @@ requestBody:
   $ref: ..\request-body.yaml
 responses:
   '200':
-    $ref: 200.yaml
+    $ref: login.200.yaml
   '401':
-    $ref: 401.yaml
+    $ref: login.401.yaml
