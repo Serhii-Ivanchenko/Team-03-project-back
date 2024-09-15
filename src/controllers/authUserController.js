@@ -153,7 +153,7 @@ export const loginWithGoogleController = async (req, res) => {
 };
 
 export const patchUserPhotoController = async (req, res) => {
-  const { userId } = req.params;
+  const userId = req.authUser._id;
 
   if (!req.file) {
     throw createHttpError(400, 'No file uploaded');
@@ -171,7 +171,6 @@ export const patchUserPhotoController = async (req, res) => {
     status: 200,
     message: 'Successfully updated user photo!',
     data: {
-      userId: updatedUser._id,
       photo: updatedUser.photo,
     },
   });

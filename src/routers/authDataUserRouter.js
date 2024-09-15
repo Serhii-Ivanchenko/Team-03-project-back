@@ -12,7 +12,8 @@ const router = Router();
 router.get('/data', auth, controllerWrapper(authDataUserRouterController));
 
 router.patch(
-  '/:userId/photo',
+  '/photo',
+  auth,
   upload.single('photo'),
   controllerWrapper(patchUserPhotoController),
 );
