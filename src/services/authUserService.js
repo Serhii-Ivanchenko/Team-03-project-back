@@ -2,7 +2,10 @@ import { UserCollection } from '../db/models/userModel.js';
 import { AuthUserSessionCollection } from '../db/models/authUserSessionModel.js';
 import { getEncryptedPassword } from '../utils/password.js';
 import createHttpError from 'http-errors';
-import { getFullNameFromGoogleTokenPayload, validateCode } from '../utils/googleOAuth2.js';
+import {
+  getFullNameFromGoogleTokenPayload,
+  validateCode,
+} from '../utils/googleOAuth2.js';
 import { getAuthUserSessionObject } from './authUserSessionService.js';
 import bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
@@ -15,6 +18,12 @@ export const getAuthUsersService = async () => {
 export const getAuthUserById = (id) => UserCollection.findById(id);
 
 export const getAuthUserByEmail = (email) => UserCollection.findOne({ email });
+
+export const findUserByIdAndEmail = (_id, email) =>
+  UserCollection.findOne({ _id, email });
+
+export const updateUserPassword = (_id, password) =>
+  UserCollection.findOneAndUpdate({ _id }, { password });
 
 export const createAuthUserService = async (userData) => {
   // const encryptedPassword = await bcrypt.hash(userData.password, 10);
