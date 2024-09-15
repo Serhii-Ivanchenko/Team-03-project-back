@@ -32,10 +32,20 @@ paths:
     post:
       $ref: ../swagger/paths/auth/logout/post.yaml
 
+# auth/google:
+  /auth/google/get-oauth-url:
+    get:
+      $ref: ../swagger/paths/auth/google/get-oauth-url/get.yaml
+  /auth/google/confirm-google-auth:
+    post:
+      $ref: ../swagger/paths/auth/google/confirm-google-auth/post.yaml
 # users:
   /users/data:
     get:
       $ref: ../swagger/paths/users/data/get.yaml
+  /users/photo:
+    patch:
+      $ref: ../swagger/paths/users/photo/patch.yaml
   /users/send-reset-email:
     post:
       $ref: ../swagger/paths/users/send-reset-email/post.yaml

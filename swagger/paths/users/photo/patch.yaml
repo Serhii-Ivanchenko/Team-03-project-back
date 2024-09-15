@@ -1,0 +1,74 @@
+tags:
+  - Users
+summary: Update User Photo
+operationId: patchUserPhoto
+description: 'Updates the profile photo of the authenticated user'
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - photo
+        properties:
+          photo:
+            description: New profile photo to upload
+            type: string
+            format: binary
+responses:
+  '200':
+    description: Successfully updated user photo
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully updated user photo!
+            data:
+              type: object
+              properties:
+                photo:
+                  type: string
+                  example: 'https://res.cloudinary.com/dcftarozu/image/upload/v1726336739/nyngek38xghmbjksx4i1.png'
+  '400':
+    description: No file uploaded
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: No file uploaded
+  '401':
+    $ref: ../../../components/responses/401.yaml
+  '404':
+    description: User not found
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 404
+            message:
+              type: string
+              example: User not found
+  '500':
+    $ref: ../../../components/responses/500.yaml
