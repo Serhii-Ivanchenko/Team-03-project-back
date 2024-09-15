@@ -7,11 +7,11 @@ export const usersUpdateController = async (req, res, next) => {
 
   const user = await updateUsersById(userId, update);
 
-  if (!user) throw createHttpError(404, 'Contact not found');
+  if (!user) throw createHttpError(404, 'User not found');
 
   res.status(200).json({
     status: 200,
-    message: 'Successfully patched a contact!',
+    message: 'Successfully updated user data!',
     data: user,
   });
 };
