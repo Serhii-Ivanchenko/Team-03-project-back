@@ -18,7 +18,7 @@ servers:
   - url: http://localhost:8080
   - url: https://watertracker-app-spy2.onrender.com
 paths:
-# auth:
+  # auth:
   /auth/register:
     post:
       $ref: ../swagger/paths/auth/register/post.yaml
@@ -32,12 +32,18 @@ paths:
     post:
       $ref: ../swagger/paths/auth/logout/post.yaml
 
-# user:
+  # user:
   /users/data:
     get:
       $ref: ../swagger/paths/users/data/get.yaml
+  /users/send-reset-email:
+    post:
+      $ref: ../swagger/paths/users/send-reset-email/post.yaml
+  /users/reset-pswrd:
+    post:
+      $ref: ../swagger/paths/users/reset-pswrd/post.yaml
 
-# water:
+  # water:
   /water:
     post:
       $ref: ../swagger/paths/water/add/post.yaml
