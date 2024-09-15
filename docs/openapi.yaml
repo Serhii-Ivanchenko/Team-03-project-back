@@ -32,6 +32,12 @@ paths:
   /users/data:
     get:
       $ref: ../swagger/paths/users/data/get.yaml
+  /users/send-reset-email:
+    post:
+      $ref: ../swagger/paths/users/send-reset-email/post.yaml
+  /users/reset-pswrd:
+    post:
+      $ref: ../swagger/paths/users/reset-pswrd/post.yaml
 #  добавлять пути
 components:
   securitySchemes:
