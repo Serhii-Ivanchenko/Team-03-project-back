@@ -4,8 +4,9 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
-import { APP_CONFIG } from './constants/app.js';
+// import { APP_CONFIG } from './constants/app.js';
 import router from './routers/router.js';
+import { APP_CONFIG } from './utils/env.js';
 
 const PORT = APP_CONFIG.PORT;
 
