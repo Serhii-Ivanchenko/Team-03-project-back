@@ -1,0 +1,14 @@
+tags:
+  - Water
+summary: Retrieve Day Water Items by specific date
+operationId: getWaterDayByDate
+description: 'Retrieve Day Water Items by specific date of a registered user'
+security:
+  - bearerAuth: []
+parameters:
+  $ref: water-item.day.param.yaml
+responses:
+  '200':
+    $ref: water-item.day.200.yaml
+  '401':
+    $ref: ..\..\..\components\responses\401.yaml

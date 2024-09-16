@@ -1,0 +1,22 @@
+# type: object
+content:
+  application/json:
+    schema:
+      type: object
+      required:
+        -  value
+      properties:
+        value:
+          description: 'Value'
+          type: string
+          example: '250'
+        time:
+          description: 'Time'
+          type: string
+          example: '22:22'
+          default: null
+        date:
+          description: 'Date'
+          type: string
+          example: '2024-09-09'
+          default: null

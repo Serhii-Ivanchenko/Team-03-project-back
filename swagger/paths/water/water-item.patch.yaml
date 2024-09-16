@@ -1,0 +1,17 @@
+tags:
+  - Water
+summary: Update Water Item
+operationId: patchWaterItem
+description: Update Water Item
+security:
+  - bearerAuth: []
+parameters:
+  $ref: water-item.param.yaml
+requestBody:
+  $ref: water-item.req.body.yaml
+responses:
+  '200':
+    description: 'Response containing user data'
+    $ref: water-item.patch.200.yaml
+  '401':
+    $ref: ..\..\components\responses\401.yaml

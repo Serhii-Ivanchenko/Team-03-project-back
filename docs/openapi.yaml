@@ -39,6 +39,7 @@ paths:
   /auth/google/confirm-google-auth:
     post:
       $ref: ../swagger/paths/auth/google/confirm-google-auth/post.yaml
+
   # users:
   /users/data:
     get:
@@ -55,6 +56,28 @@ paths:
   /users/update:
     patch:
       $ref: ../swagger/paths/users/update/patch.yaml
+
+  # water:
+  /water:
+    post:
+      $ref: ../swagger/paths/water/water-item.post.yaml
+  /water/{id}:
+    patch:
+      $ref: ../swagger/paths/water/water-item.patch.yaml
+    delete:
+      $ref: ../swagger/paths/water/water-item.delete.yaml
+  /water/day:
+    get:
+      $ref: ../swagger/paths/water/day/get.yaml
+  /water/day/{date}:
+    get:
+      $ref: ../swagger/paths/water/day/getByDate.yaml
+  /water/month:
+    get:
+      $ref: ../swagger/paths/water/month/get.yaml
+  /water/month/{month}:
+    get:
+      $ref: ../swagger/paths/water/month/getByDate.yaml
 #  добавлять пути
 components:
   securitySchemes:

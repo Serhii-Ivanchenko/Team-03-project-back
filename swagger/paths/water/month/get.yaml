@@ -1,0 +1,12 @@
+tags:
+  - Water
+summary: Retrieve Month Water Items by current month date
+operationId: getWaterMonth
+description: 'Retrieve Month Water Items by current month date of a registered user'
+security:
+  - bearerAuth: []
+responses:
+  '200':
+    $ref: water-item.month.200.yaml
+  '401':
+    $ref: ..\..\..\components\responses\401.yaml
