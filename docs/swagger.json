@@ -1751,16 +1751,18 @@
           "date": {
             "description": "Date",
             "type": "string",
+            "format": "date",
             "example": "2024-09-09"
           },
           "time": {
             "description": "Time",
             "type": "string",
+            "format": "time",
             "example": "22:22"
           },
           "value": {
             "description": "Value",
-            "type": "number",
+            "type": "integer",
             "example": 250
           }
         }
