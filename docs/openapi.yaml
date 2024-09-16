@@ -18,7 +18,7 @@ servers:
   - url: http://localhost:8080
   - url: https://watertracker-app-spy2.onrender.com
 paths:
-# auth:
+  # auth:
   /auth/register:
     post:
       $ref: ../swagger/paths/auth/register/post.yaml
@@ -32,14 +32,14 @@ paths:
     post:
       $ref: ../swagger/paths/auth/logout/post.yaml
 
-# auth/google:
+  # auth/google:
   /auth/google/get-oauth-url:
     get:
       $ref: ../swagger/paths/auth/google/get-oauth-url/get.yaml
   /auth/google/confirm-google-auth:
     post:
       $ref: ../swagger/paths/auth/google/confirm-google-auth/post.yaml
-# users:
+  # users:
   /users/data:
     get:
       $ref: ../swagger/paths/users/data/get.yaml
@@ -52,6 +52,9 @@ paths:
   /users/reset-pswrd:
     post:
       $ref: ../swagger/paths/users/reset-pswrd/post.yaml
+  /users/update:
+    patch:
+      $ref: ../swagger/paths/users/update/patch.yaml
 #  добавлять пути
 components:
   securitySchemes:
