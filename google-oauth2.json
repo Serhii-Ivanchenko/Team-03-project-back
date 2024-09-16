@@ -1,11 +1,9 @@
 {
   "web": {
-    "project_id": "neural-clock-435820-d9",
+    "project_id": "aquatracker-435509",
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
     "token_uri": "https://oauth2.googleapis.com/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "redirect_uris": [
-      "https://team-03-project-front.vercel.app/auth/google/confirm-google-auth"
-    ]
+    "redirect_uris": ["https://team-03-project-front.vercel.app/auth/google/confirm-google-auth"]
   }
 }
