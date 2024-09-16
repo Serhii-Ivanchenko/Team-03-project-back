@@ -10,11 +10,11 @@ const PATH_JSON = path.join(process.cwd(), 'google-oauth.json');
 const oauthConfig = JSON.parse(await readFile(PATH_JSON));
 
 // Change the port in redirect_uris to 5713
-oauthConfig.web.redirect_uris = oauthConfig.web.redirect_uris.map(uri => {
-  const url = new URL(uri);
-  url.port = APP_CONFIG.PORT;
-  return url.toString();
-});
+// oauthConfig.web.redirect_uris = oauthConfig.web.redirect_uris.map(uri => {
+//   const url = new URL(uri);
+//   url.port = APP_CONFIG.PORT;
+//   return url.toString();
+// });
 
 const googleOAuthClient = new OAuth2Client({
   clientId: env('GOOGLE_AUTH_CLIENT_ID'),
