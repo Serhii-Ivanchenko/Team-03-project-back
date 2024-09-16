@@ -16,7 +16,8 @@ export const usersUpdateController = async (req, res, next) => {
   if (email) {
     const userEmail = await getAuthUserByEmail(email);
 
-    if (userEmail !== null && userId !== userEmail._id) {
+    // if (userEmail !== null && userId.toString() !== userEmail._id.toString()) {
+    if (userEmail !== null && !userId.equals(userEmail._id)) {
       throw createHttpError(
         409,
         'This email is already in use and cannot be changed',
