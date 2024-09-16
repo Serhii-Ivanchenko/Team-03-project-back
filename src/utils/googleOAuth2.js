@@ -2,12 +2,19 @@ import { OAuth2Client } from 'google-auth-library';
 import path from 'node:path';
 import { readFile } from 'fs/promises';
 
-import { env } from './env.js';
+import { env, APP_CONFIG  } from './env.js';
 import createHttpError from 'http-errors';
 
 const PATH_JSON = path.join(process.cwd(), 'google-oauth.json');
 
 const oauthConfig = JSON.parse(await readFile(PATH_JSON));
+
+// Change the port in redirect_uris to 5713
+oauthConfig.web.redirect_uris = oauthConfig.web.redirect_uris.map(uri => {
+  const url = new URL(uri);
+  url.port = APP_CONFIG.PORT;
+  return url.toString();
+});
 
 const googleOAuthClient = new OAuth2Client({
   clientId: env('GOOGLE_AUTH_CLIENT_ID'),
