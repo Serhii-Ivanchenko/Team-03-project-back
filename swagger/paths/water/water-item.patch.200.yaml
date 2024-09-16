@@ -1,3 +1,4 @@
+description: 'Successfully updated a water item!'
 content:
   application/json:
     schema:

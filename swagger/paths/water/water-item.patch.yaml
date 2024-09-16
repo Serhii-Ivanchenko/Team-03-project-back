@@ -10,8 +10,8 @@ parameters:
 requestBody:
   $ref: water-item.req.body.yaml
 responses:
-  200:
+  '200':
     description: 'Response containing user data'
     $ref: water-item.patch.200.yaml
-  401:
+  '401':
     $ref: ..\..\components\responses\401.yaml

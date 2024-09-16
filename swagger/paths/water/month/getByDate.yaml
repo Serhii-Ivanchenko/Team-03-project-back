@@ -10,24 +10,5 @@ parameters:
 responses:
   '200':
     $ref: water-item.month.200.yaml
-    # description: 'Response containing user data'
-    # content:
-    #   application/json:
-    #     schema:
-    #       type: object
-    #       required:
-    #         - status
-    #         - message
-    #         - data
-    #       properties:
-    #         status:
-    #           type: integer
-    #           example: 200
-    #         message:
-    #           type: string
-    #           example: 'User data retrieved successfully'
-    #         data:
-    #           type: object[]
-    #           $ref: ../../../components/schemas/user.yaml
-  401:
+  '401':
     $ref: ..\..\..\components\responses\401.yaml

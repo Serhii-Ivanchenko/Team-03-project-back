@@ -1,21 +1,22 @@
+description: Successfully found data about month water consumption!
 content:
   application/json:
     schema:
       type: object
       required:
         - userId
-        - dayliNorm
+        - dailyNorm
         - data
       properties:
         userId:
           type: string
           example: '66e2e3423073bfb71be21f81'
-        dayliNorm:
+        dailyNorm:
           type: number
           example: 1700
         data:
           type: object
-          # $ref: ../../../components/schemas/water-item.yaml
+          $ref: ../../../components/schemas/water-item.yaml
           required:
             - date
             - value
@@ -24,7 +25,6 @@ content:
               description: 'Date'
               type: string
               example: '2024-09-09'
-              # default: null
             value:
               description: 'Value'
               type: string

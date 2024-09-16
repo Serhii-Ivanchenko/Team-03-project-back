@@ -66,13 +66,13 @@ paths:
   /water/day:
     get:
       $ref: ../swagger/paths/water/day/get.yaml
-  /water/day/{date:yyyy-MM-dd}:
+  /water/day/{date}:
     get:
       $ref: ../swagger/paths/water/day/getByDate.yaml
   /water/month:
     get:
       $ref: ../swagger/paths/water/month/get.yaml
-  /water/month/{date:yyyy-MM(-dd)}:
+  /water/month/{month}:
     get:
       $ref: ../swagger/paths/water/month/getByDate.yaml
 

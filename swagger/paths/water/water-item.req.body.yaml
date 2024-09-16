@@ -4,9 +4,7 @@ content:
     schema:
       type: object
       required:
-        - value
-        # - time
-        # - date
+        -  value
       properties:
         value:
           description: 'Value'
