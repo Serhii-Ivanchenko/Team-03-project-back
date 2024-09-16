@@ -9,7 +9,6 @@ requestBody:
   $ref: water-item.req.body.yaml
 responses:
   '201':
-    description: 'Response containing user data'
     $ref: water-item.post.201.yaml
   '401':
     $ref: ..\..\components\responses\401.yaml

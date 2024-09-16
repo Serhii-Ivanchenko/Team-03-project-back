@@ -4,5 +4,6 @@
   required: true
   schema:
     type: string
+    format: date
     example: '2024-09-09'
     description: 'full format:[yyyy-MM-dd] - "2024-09-09" or short format:[yyyy-MM] - "2024-09"'

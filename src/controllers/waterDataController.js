@@ -64,12 +64,13 @@ export const getDayWaterDataController = async (req, res, next) => {
   const user = req.authUser;
   const userId = user._id;
 
-  const waterData = await getDayWaterDataService(userId, date);
+  const data = await getDayWaterDataService(userId, date);
 
   res.send({
     userId,
     dailyNorm: user.dailyNorm,
-    data: waterData,
+    totalValue: data.dayValue,
+    data: data.dayData,
   });
 };
 

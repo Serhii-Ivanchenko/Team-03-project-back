@@ -619,6 +619,99 @@
         }
       }
     },
+    "/users/update": {
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update User Data",
+        "operationId": "updateUsers",
+        "description": "Update user profile information, such as name, gender, weight, activity time, or daily water intake",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "description": "The user's name",
+                    "type": "string",
+                    "example": "Max Payne"
+                  },
+                  "gender": {
+                    "description": "The user's gender",
+                    "type": "string",
+                    "enum": [
+                      "woman",
+                      "man"
+                    ],
+                    "example": "man"
+                  },
+                  "weight": {
+                    "description": "The user's weight in kilograms",
+                    "type": "number",
+                    "example": 85
+                  },
+                  "activeTime": {
+                    "description": "Time spent on physical activity in hours",
+                    "type": "number",
+                    "example": 6
+                  },
+                  "dailyNorm": {
+                    "description": "The user's daily water intake in milliliters",
+                    "type": "number",
+                    "example": 1500
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User data updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully updated user data!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/user"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "404": {
+            "$ref": "#/components/responses/404-userNotFound"
+          }
+        }
+      }
+    },
     "/water": {
       "post": {
         "tags": [
@@ -626,7 +719,7 @@
         ],
         "summary": "Add Water item",
         "operationId": "addWaterItem",
-        "description": "Register user",
+        "description": "Create a new water item",
         "security": [
           {
             "bearerAuth": []
@@ -708,7 +801,7 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Successfully deleted the contact"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -742,7 +835,7 @@
         }
       }
     },
-    "/water/day/{date:yyyy-MM-dd}": {
+    "/water/day/{date}": {
       "get": {
         "tags": [
           "Water"
@@ -762,13 +855,13 @@
             "required": true,
             "schema": {
               "type": "string",
+              "format": "date",
               "example": "2024-09-09"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Response containing user data",
             "$ref": "#/components/responses/water-item.day.200"
           },
           "401": {
@@ -800,7 +893,7 @@
         }
       }
     },
-    "/water/month/{date:yyyy-MM(-dd)}": {
+    "/water/month/{month}": {
       "get": {
         "tags": [
           "Water"
@@ -816,10 +909,11 @@
         "parameters": [
           {
             "in": "path",
-            "name": "date",
+            "name": "month",
             "required": true,
             "schema": {
               "type": "string",
+              "format": "date",
               "example": "2024-09-09",
               "description": "full format:[yyyy-MM-dd] - \"2024-09-09\" or short format:[yyyy-MM] - \"2024-09\""
             }
@@ -1210,6 +1304,7 @@
         }
       },
       "water-item.post.201": {
+        "description": "Creates a new water item",
         "content": {
           "application/json": {
             "schema": {
@@ -1226,7 +1321,7 @@
                 },
                 "message": {
                   "type": "string",
-                  "example": "Successfully created a water-item!"
+                  "example": "Successfully created a wateritem!"
                 },
                 "data": {
                   "type": "object",
@@ -1275,6 +1370,7 @@
         }
       },
       "water-item.patch.200": {
+        "description": "Successfully updated a water item!",
         "content": {
           "application/json": {
             "schema": {
@@ -1309,7 +1405,8 @@
               "type": "object",
               "required": [
                 "userId",
-                "dayliNorm",
+                "dailyNorm",
+                "totalValue",
                 "data"
               ],
               "properties": {
@@ -1317,41 +1414,73 @@
                   "type": "string",
                   "example": "66e2e3423073bfb71be21f81"
                 },
-                "dayliNorm": {
-                  "type": "number",
+                "dailyNorm": {
+                  "type": "integer",
+                  "description": "The daily target value or norm that the user aims to achieve.",
                   "example": 1700
                 },
+                "totalValue": {
+                  "type": "integer",
+                  "description": "The total value accumulated over the data period.",
+                  "example": 815
+                },
                 "data": {
-                  "type": "object",
-                  "required": [
-                    "id",
-                    "date",
-                    "time",
-                    "value"
-                  ],
-                  "properties": {
-                    "id": {
-                      "description": "userId",
-                      "type": "string",
-                      "example": "66e33067ec54bcf268b5f78f"
-                    },
-                    "date": {
-                      "description": "Date",
-                      "type": "string",
-                      "example": "2024-09-09"
-                    },
-                    "time": {
-                      "description": "time",
-                      "type": "string",
-                      "example": "22:22"
-                    },
-                    "value": {
-                      "description": "Value",
-                      "type": "number",
-                      "example": 250
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "date",
+                      "time",
+                      "value"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "example": "66e33067ec54bcf268b5f78f"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-09-01"
+                      },
+                      "time": {
+                        "type": "string",
+                        "format": "time",
+                        "example": "21:18"
+                      },
+                      "value": {
+                        "type": "integer",
+                        "example": 555
+                      }
                     }
                   }
                 }
+              },
+              "example": {
+                "userId": "66e2e3423073bfb71be21f81",
+                "dailyNorm": 1700,
+                "totalValue": 815,
+                "data": [
+                  {
+                    "id": "66e33067ec54bcf268b5f78f",
+                    "date": "2024-09-01",
+                    "time": "21:18",
+                    "value": 555
+                  },
+                  {
+                    "id": "66e4079d1c4eb0e98f4ffe82",
+                    "date": "2024-09-01",
+                    "time": "12:36",
+                    "value": 130
+                  },
+                  {
+                    "id": "66e723e1529bb9cc3866acfe",
+                    "date": "2024-09-01",
+                    "time": "21:13",
+                    "value": 130
+                  }
+                ]
               }
             }
           }
@@ -1364,7 +1493,7 @@
               "type": "object",
               "required": [
                 "userId",
-                "dayliNorm",
+                "dailyNorm",
                 "data"
               ],
               "properties": {
@@ -1372,29 +1501,157 @@
                   "type": "string",
                   "example": "66e2e3423073bfb71be21f81"
                 },
-                "dayliNorm": {
-                  "type": "number",
+                "dailyNorm": {
+                  "type": "integer",
                   "example": 1700
                 },
                 "data": {
-                  "type": "object",
-                  "required": [
-                    "date",
-                    "value"
-                  ],
-                  "properties": {
-                    "date": {
-                      "description": "Date",
-                      "type": "string",
-                      "example": "2024-09-09"
-                    },
-                    "value": {
-                      "description": "Value",
-                      "type": "string",
-                      "example": "250"
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "date",
+                      "value"
+                    ],
+                    "properties": {
+                      "date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-09-01"
+                      },
+                      "value": {
+                        "type": "integer",
+                        "example": 815
+                      }
                     }
                   }
                 }
+              },
+              "example": {
+                "userId": "66e2e3423073bfb71be21f81",
+                "dailyNorm": 1700,
+                "data": [
+                  {
+                    "date": "2024-09-01",
+                    "value": 815
+                  },
+                  {
+                    "date": "2024-09-02",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-03",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-04",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-05",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-06",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-07",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-08",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-09",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-10",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-11",
+                    "value": 555
+                  },
+                  {
+                    "date": "2024-09-12",
+                    "value": 2553
+                  },
+                  {
+                    "date": "2024-09-13",
+                    "value": 260
+                  },
+                  {
+                    "date": "2024-09-14",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-15",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-16",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-17",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-18",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-19",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-20",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-21",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-22",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-23",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-24",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-25",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-26",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-27",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-28",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-29",
+                    "value": 0
+                  },
+                  {
+                    "date": "2024-09-30",
+                    "value": 0
+                  }
+                ]
               }
             }
           }
@@ -1496,16 +1753,18 @@
           "date": {
             "description": "Date",
             "type": "string",
+            "format": "date",
             "example": "2024-09-09"
           },
           "time": {
             "description": "Time",
             "type": "string",
+            "format": "time",
             "example": "22:22"
           },
           "value": {
             "description": "Value",
-            "type": "number",
+            "type": "integer",
             "example": 250
           }
         }
