@@ -53,6 +53,9 @@ paths:
   /users/reset-pswrd:
     post:
       $ref: ../swagger/paths/users/reset-pswrd/post.yaml
+  /users/update:
+    patch:
+      $ref: ../swagger/paths/users/update/patch.yaml
 
   # water:
   /water:
@@ -75,7 +78,7 @@ paths:
   /water/month/{month}:
     get:
       $ref: ../swagger/paths/water/month/getByDate.yaml
-
+#  добавлять пути
 components:
   securitySchemes:
     bearerAuth:

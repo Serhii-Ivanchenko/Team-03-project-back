@@ -78,3 +78,6 @@ export const updateUser = async (userId, payload) => {
 
   return rawResult.value;
 };
+
+export const updateUsersById = (id, update, options = { new: true }) =>
+  UserCollection.findByIdAndUpdate(id, update, options);

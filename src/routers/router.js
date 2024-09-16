@@ -6,6 +6,7 @@ import authGoogleRouter from './authGoogleRouter.js';
 // import { swaggerDocs } from '../middlewares/swaggerDocs.js';
 import authDataUserRouter from './authDataUserRouter.js';
 import usersResetPasswordRouter from './usersResetPasswordRouter.js';
+import usersUpdateRouter from './usersUpdateRouter.js';
 
 import { auth } from '../middlewares/auth.js';
 import waterDataRouter from './waterDataRouter.js';
@@ -19,6 +20,7 @@ router.use('/auth/google', authGoogleRouter);
 router.use('/api-docs', swaggerDocs());
 router.use('/users', authDataUserRouter);
 router.use('/users', usersResetPasswordRouter);
+router.use('/users', usersUpdateRouter);
 
 router.use('/water/all', waterDataRouter);
 router.use('/water', auth, waterDataRouter);
