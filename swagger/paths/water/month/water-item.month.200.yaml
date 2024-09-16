@@ -1,4 +1,4 @@
-description: Successfully found data about month water consumption!
+# description: Successfully found data about month water consumption!
 content:
   application/json:
     schema:
@@ -12,20 +12,84 @@ content:
           type: string
           example: '66e2e3423073bfb71be21f81'
         dailyNorm:
-          type: number
+          type: integer
           example: 1700
         data:
-          type: object
-          $ref: ../../../components/schemas/water-item.yaml
-          required:
-            - date
-            - value
-          properties:
-            date:
-              description: 'Date'
-              type: string
-              example: '2024-09-09'
-            value:
-              description: 'Value'
-              type: string
-              example: '250'
+          type: array
+          items:
+            type: object
+            required:
+              - date
+              - value
+            properties:
+              date:
+                type: string
+                format: date
+                example: '2024-09-01'
+              value:
+                type: integer
+                example: 815
+      example:
+        userId: '66e2e3423073bfb71be21f81'
+        dailyNorm: 1700
+        data:
+          - date: '2024-09-01'
+            value: 815
+          - date: '2024-09-02'
+            value: 0
+          - date: '2024-09-03'
+            value: 0
+          - date: '2024-09-04'
+            value: 0
+          - date: '2024-09-05'
+            value: 0
+          - date: '2024-09-06'
+            value: 0
+          - date: '2024-09-07'
+            value: 0
+          - date: '2024-09-08'
+            value: 0
+          - date: '2024-09-09'
+            value: 0
+          - date: '2024-09-10'
+            value: 0
+          - date: '2024-09-11'
+            value: 555
+          - date: '2024-09-12'
+            value: 2553
+          - date: '2024-09-13'
+            value: 260
+          - date: '2024-09-14'
+            value: 0
+          - date: '2024-09-15'
+            value: 0
+          - date: '2024-09-16'
+            value: 0
+          - date: '2024-09-17'
+            value: 0
+          - date: '2024-09-18'
+            value: 0
+          - date: '2024-09-19'
+            value: 0
+          - date: '2024-09-20'
+            value: 0
+          - date: '2024-09-21'
+            value: 0
+          - date: '2024-09-22'
+            value: 0
+          - date: '2024-09-23'
+            value: 0
+          - date: '2024-09-24'
+            value: 0
+          - date: '2024-09-25'
+            value: 0
+          - date: '2024-09-26'
+            value: 0
+          - date: '2024-09-27'
+            value: 0
+          - date: '2024-09-28'
+            value: 0
+          - date: '2024-09-29'
+            value: 0
+          - date: '2024-09-30'
+            value: 0

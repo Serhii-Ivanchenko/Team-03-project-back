@@ -49,13 +49,14 @@ export const deleteWaterItemService = async (userId, id) => {
 export const getDayWaterDataService = async (userId, date) => {
   date = getFormattedDate(date);
   const result = await WaterDataCollection.find({ userId, date });
-  const dayWaterDdata = result.map((item) => ({
+  const dayData = result.map((item) => ({
     id: item._id,
     date: item.date,
     time: item.time,
     value: item.value,
   }));
-  return dayWaterDdata;
+  const dayValue = result.reduce((acc, item) => acc + item.value, 0);
+  return { dayData, dayValue };
 };
 
 export const getMonthWaterDataService = async (userId, date) => {
