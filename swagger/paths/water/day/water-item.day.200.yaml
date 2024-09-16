@@ -6,36 +6,58 @@ content:
       required:
         - userId
         - dailyNorm
+        - totalValue
         - data
       properties:
         userId:
           type: string
           example: '66e2e3423073bfb71be21f81'
         dailyNorm:
-          type: number
+          type: integer
+          description: 'The daily target value or norm that the user aims to achieve.'
           example: 1700
+        totalValue:
+          type: integer
+          description: 'The total value accumulated over the data period.'
+          example: 815
         data:
-          type: object
-          $ref: ../../../components/schemas/water-item.yaml
-          required:
-            - id
-            - date
-            - time
-            - value
-          properties:
-            id:
-              description: 'userId'
-              type: string
-              example: '66e33067ec54bcf268b5f78f'
-            date:
-              description: 'Date'
-              type: string
-              example: '2024-09-09'
-            time:
-              description: 'time'
-              type: string
-              example: '22:22'
-            value:
-              description: 'Value'
-              type: number
-              example: 250
+          type: array
+          items:
+            type: object
+            required:
+              - id
+              - date
+              - time
+              - value
+            properties:
+              id:
+                type: string
+                example: '66e33067ec54bcf268b5f78f'
+              date:
+                type: string
+                format: date
+                example: '2024-09-01'
+              time:
+                type: string
+                format: time
+                example: '21:18'
+              value:
+                type: integer
+                example: 555
+      example:
+        userId: '66e2e3423073bfb71be21f81'
+        dailyNorm: 1700
+        totalValue: 815
+        data:
+          - id: '66e33067ec54bcf268b5f78f'
+            date: '2024-09-01'
+            time: '21:18'
+            value: 555
+          - id: '66e4079d1c4eb0e98f4ffe82'
+            date: '2024-09-01'
+            time: '12:36'
+            value: 130
+          - id: '66e723e1529bb9cc3866acfe'
+            date: '2024-09-01'
+            time: '21:13'
+            value: 130

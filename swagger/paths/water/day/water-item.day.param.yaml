@@ -4,4 +4,5 @@
   required: true
   schema:
     type: string
+    format: date
     example: '2024-09-09'
