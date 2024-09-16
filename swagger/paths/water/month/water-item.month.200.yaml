@@ -1,4 +1,4 @@
-# description: Successfully found data about month water consumption!
+description: Successfully found data about month water consumption!
 content:
   application/json:
     schema:
