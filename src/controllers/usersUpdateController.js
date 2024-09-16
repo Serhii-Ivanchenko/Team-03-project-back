@@ -8,15 +8,15 @@ export const usersUpdateController = async (req, res, next) => {
   const userId = req.authUser._id;
   const { email } = req.body;
 
-  /* если front-end передвает нам email
-  мы ищем его в db, если его нет, значит нам передали новый email делаем замену,
-  если он есть в db проеряем принаджежит нашему пользоваетлю: то его дали просто со всеми данными
-  если если он принаджужит другому пользователю получится ошибка */
+  /* если с front-end приходит email
+  мы ищем его в db, если его нет, значит пользователь меняет его на новый,
+  ? если он есть в db, проверяем кому он принадлежит:
+  * если нашему пользователю, значит он пришел автоматом со вмеми данными, игнорируем и обновляем все
+  ! если он принадледжит другому пользователю, сообщаем что замена не возможна */
 
   if (email) {
     const userEmail = await getAuthUserByEmail(email);
 
-    // if (userEmail !== null && userId.toString() !== userEmail._id.toString()) {  -- ещё один вариант решения, сравнения строк
     if (userEmail !== null && !userId.equals(userEmail._id)) {
       throw createHttpError(
         409,
