@@ -16,7 +16,7 @@ export const usersUpdateController = async (req, res, next) => {
   if (email) {
     const userEmail = await getAuthUserByEmail(email);
 
-    // if (userEmail !== null && userId.toString() !== userEmail._id.toString()) {
+    // if (userEmail !== null && userId.toString() !== userEmail._id.toString()) {  -- ещё один вариант решения, сравнения строк
     if (userEmail !== null && !userId.equals(userEmail._id)) {
       throw createHttpError(
         409,
