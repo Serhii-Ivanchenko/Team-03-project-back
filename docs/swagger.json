@@ -708,6 +708,30 @@
           },
           "404": {
             "$ref": "#/components/responses/404-userNotFound"
+          },
+          "409": {
+            "description": "Email in use",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "This email is already in use and cannot be changed"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -1269,12 +1293,17 @@
                 "data": {
                   "type": "object",
                   "required": [
-                    "accessToken"
+                    "accessToken",
+                    "user"
                   ],
                   "properties": {
                     "accessToken": {
                       "type": "string",
-                      "example": "vk3kIczmM27VurTViXbGCQvpu97eH8f7BAIwp1qA"
+                      "example": "L8vTDBjLL79ntZi3hgb76FlR5lCy/4aEZPsic+u1"
+                    },
+                    "user": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/user"
                     }
                   }
                 }
