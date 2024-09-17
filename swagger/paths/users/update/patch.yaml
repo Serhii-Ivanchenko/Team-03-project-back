@@ -60,3 +60,19 @@ responses:
     $ref: ..\..\..\components\responses\401.yaml
   '404':
     $ref: ../../../components/responses/404-userNotFound.yaml
+  '409':
+    description: 'Email in use'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 404
+            message:
+              type: string
+              example: 'This email is already in use and cannot be changed'

@@ -4,8 +4,6 @@ export const authDataUserRouterController = (req, res, next) => {
   res.status(200).json({
     status: 200,
     message: 'User data retrieved successfully',
-    data: {
-      user,
-    },
+    data: user,
   });
 };
