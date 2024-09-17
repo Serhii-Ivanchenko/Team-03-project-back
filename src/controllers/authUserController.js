@@ -55,18 +55,23 @@ export const getAuthUsersSessionsController = async (req, res) => {
 };
 
 export const registerAuthUserController = async (req, res) => {
-  const { email, name } = req.body;
-  const authUser = await getAuthUserByEmail(email);
+  const { email } = req.body;
+  let authUser = await getAuthUserByEmail(email);
   if (authUser) {
     throw createHttpError(409, 'Email in use');
   }
 
-  await createAuthUserService(req.body);
+  const user = await createAuthUserService(req.body);
+  const session = await getAuthUserSessionService(user._id);
+  setupAuthUserSessionCookies(res, session);
 
   res.status(201).json({
     status: 201,
     message: 'Successfully registered a user!',
-    data: { name, email },
+    data: {
+      accessToken: session.accessToken,
+      user,
+    },
   });
 };
 
