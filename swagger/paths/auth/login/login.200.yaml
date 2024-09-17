@@ -13,12 +13,16 @@ content:
           example: 200
         message:
           type: string
-          example: "Successfully logged in an user!"
+          example: 'Successfully logged in an user!'
         data:
           type: object
           required:
             - accessToken
+            - user
           properties:
             accessToken:
               type: string
-              example: "vk3kIczmM27VurTViXbGCQvpu97eH8f7BAIwp1qA"
+              example: 'L8vTDBjLL79ntZi3hgb76FlR5lCy/4aEZPsic+u1'
+            user:
+              type: object
+              $ref: ../../../components/schemas/user.yaml
