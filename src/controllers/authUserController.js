@@ -21,6 +21,7 @@ import { comparePasswords } from '../utils/password.js';
 
 import { generateAuthUrl } from '../utils/googleOAuth2.js';
 import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
+import { UserCollection } from '../db/models/userModel.js';
 
 export const getAuthController = async (req, res) => {
   res.send({
@@ -153,6 +154,9 @@ export const getGoogleOAuthUrlController = async (req, res) => {
 
 export const loginWithGoogleController = async (req, res) => {
   const session = await loginOrSignupWithGoogle(req.body.code);
+
+  const user = await UserCollection.findById(session.userId);
+
   setupAuthUserSessionCookies(res, session);
 
   res.json({
@@ -160,6 +164,7 @@ export const loginWithGoogleController = async (req, res) => {
     message: 'Successfully logged in via Google OAuth!',
     data: {
       accessToken: session.accessToken,
+      user
     },
   });
 };
