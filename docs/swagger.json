@@ -730,7 +730,6 @@
         },
         "responses": {
           "201": {
-            "description": "Response containing user data",
             "$ref": "#/components/responses/water-item.post.201"
           },
           "401": {
@@ -768,7 +767,6 @@
         },
         "responses": {
           "200": {
-            "description": "Response containing user data",
             "$ref": "#/components/responses/water-item.patch.200"
           },
           "401": {
@@ -801,7 +799,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Successfully deleted the contact"
+            "description": "Successfully deleted the water item"
           },
           "401": {
             "$ref": "#/components/responses/401"
@@ -995,6 +993,118 @@
         }
       }
     },
+    "schemas": {
+      "user": {
+        "type": "object",
+        "required": [
+          "_id",
+          "name",
+          "email",
+          "password",
+          "gender",
+          "photo",
+          "weight",
+          "activeTime",
+          "dailyNorm"
+        ],
+        "properties": {
+          "_id": {
+            "description": "Backend-generated unique identifier.",
+            "type": "string",
+            "example": "66d7503af64e3c25c739120f"
+          },
+          "name": {
+            "description": "User name",
+            "type": "string",
+            "example": "John Wick",
+            "default": null
+          },
+          "email": {
+            "description": "User email address",
+            "type": "string",
+            "example": "BabaYaga@gmail.com"
+          },
+          "password": {
+            "description": "User password",
+            "type": "string",
+            "example": "password"
+          },
+          "gender": {
+            "description": "User gender",
+            "type": "string",
+            "enum": [
+              "woman",
+              "man"
+            ],
+            "example": "man",
+            "default": "woman"
+          },
+          "photo": {
+            "description": "URL to the user profile photo",
+            "type": "string",
+            "example": "https://res.cloudinary.com/da1ye1zxl/image/upload/v1725386810/bculv62l8qumzswpbkgz.jpg",
+            "default": null
+          },
+          "weight": {
+            "description": "User weight in kilograms",
+            "type": "number",
+            "example": 80,
+            "default": 0
+          },
+          "activeTime": {
+            "description": "User active time in hours per day",
+            "type": "number",
+            "example": 24,
+            "default": 0
+          },
+          "dailyNorm": {
+            "description": "Daily water intake in milliliters",
+            "type": "number",
+            "example": 2500,
+            "default": 1700
+          }
+        }
+      },
+      "water-item": {
+        "type": "object",
+        "required": [
+          "_id",
+          "userId",
+          "date",
+          "time",
+          "value"
+        ],
+        "properties": {
+          "_id": {
+            "description": "Backend-generated unique identifier.",
+            "type": "string",
+            "example": "66e2e3423073bfb71be21f81"
+          },
+          "userId": {
+            "description": "userId",
+            "type": "string",
+            "example": "66e2e3423073bfb71be21f81"
+          },
+          "date": {
+            "description": "Date",
+            "type": "string",
+            "format": "date",
+            "example": "2024-09-09"
+          },
+          "time": {
+            "description": "Time",
+            "type": "string",
+            "format": "time",
+            "example": "22:22"
+          },
+          "value": {
+            "description": "Value",
+            "type": "integer",
+            "example": 250
+          }
+        }
+      }
+    },
     "responses": {
       "401": {
         "description": "Unauthorized error",
@@ -1080,12 +1190,17 @@
                 "data": {
                   "type": "object",
                   "required": [
-                    "email"
+                    "accessToken",
+                    "user"
                   ],
                   "properties": {
-                    "email": {
+                    "accessToken": {
                       "type": "string",
-                      "example": "buboot.online@gmail.com"
+                      "example": "L8vTDBjLL79ntZi3hgb76FlR5lCy/4aEZPsic+u1"
+                    },
+                    "user": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/user"
                     }
                   }
                 }
@@ -1333,7 +1448,7 @@
         }
       },
       "water-item.delete.404": {
-        "description": "User not found!",
+        "description": "Water item not found!",
         "content": {
           "application/json": {
             "schema": {
@@ -1387,7 +1502,7 @@
                 },
                 "message": {
                   "type": "string",
-                  "example": "Successfully upserted a waterItem!"
+                  "example": "Successfully updated a waterItem!"
                 },
                 "data": {
                   "type": "object",
@@ -1399,6 +1514,7 @@
         }
       },
       "water-item.day.200": {
+        "description": "Successfully found data about day water consumption!",
         "content": {
           "application/json": {
             "schema": {
@@ -1487,6 +1603,7 @@
         }
       },
       "water-item.month.200": {
+        "description": "Successfully found data about month water consumption!",
         "content": {
           "application/json": {
             "schema": {
@@ -1654,118 +1771,6 @@
                 ]
               }
             }
-          }
-        }
-      }
-    },
-    "schemas": {
-      "user": {
-        "type": "object",
-        "required": [
-          "_id",
-          "name",
-          "email",
-          "password",
-          "gender",
-          "photo",
-          "weight",
-          "activeTime",
-          "dailyNorm"
-        ],
-        "properties": {
-          "_id": {
-            "description": "Backend-generated unique identifier.",
-            "type": "string",
-            "example": "66d7503af64e3c25c739120f"
-          },
-          "name": {
-            "description": "User name",
-            "type": "string",
-            "example": "John Wick",
-            "default": null
-          },
-          "email": {
-            "description": "User email address",
-            "type": "string",
-            "example": "BabaYaga@gmail.com"
-          },
-          "password": {
-            "description": "User password",
-            "type": "string",
-            "example": "password"
-          },
-          "gender": {
-            "description": "User gender",
-            "type": "string",
-            "enum": [
-              "woman",
-              "man"
-            ],
-            "example": "man",
-            "default": "woman"
-          },
-          "photo": {
-            "description": "URL to the user profile photo",
-            "type": "string",
-            "example": "https://res.cloudinary.com/da1ye1zxl/image/upload/v1725386810/bculv62l8qumzswpbkgz.jpg",
-            "default": null
-          },
-          "weight": {
-            "description": "User weight in kilograms",
-            "type": "number",
-            "example": 80,
-            "default": 0
-          },
-          "activeTime": {
-            "description": "User active time in hours per day",
-            "type": "number",
-            "example": 24,
-            "default": 0
-          },
-          "dailyNorm": {
-            "description": "Daily water intake in milliliters",
-            "type": "number",
-            "example": 2500,
-            "default": 1700
-          }
-        }
-      },
-      "water-item": {
-        "type": "object",
-        "required": [
-          "_id",
-          "userId",
-          "date",
-          "time",
-          "value"
-        ],
-        "properties": {
-          "_id": {
-            "description": "Backend-generated unique identifier.",
-            "type": "string",
-            "example": "66e2e3423073bfb71be21f81"
-          },
-          "userId": {
-            "description": "userId",
-            "type": "string",
-            "example": "66e2e3423073bfb71be21f81"
-          },
-          "date": {
-            "description": "Date",
-            "type": "string",
-            "format": "date",
-            "example": "2024-09-09"
-          },
-          "time": {
-            "description": "Time",
-            "type": "string",
-            "format": "time",
-            "example": "22:22"
-          },
-          "value": {
-            "description": "Value",
-            "type": "integer",
-            "example": 250
           }
         }
       }

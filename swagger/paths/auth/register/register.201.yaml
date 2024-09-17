@@ -13,12 +13,16 @@ content:
           example: 201
         message:
           type: string
-          example: "Successfully registered a user!"
+          example: 'Successfully registered a user!'
         data:
           type: object
           required:
-            - email
+            - accessToken
+            - user
           properties:
-            email:
+            accessToken:
               type: string
-              example: "buboot.online@gmail.com"
+              example: 'L8vTDBjLL79ntZi3hgb76FlR5lCy/4aEZPsic+u1'
+            user:
+              type: object
+              $ref: ../../../components/schemas/user.yaml
