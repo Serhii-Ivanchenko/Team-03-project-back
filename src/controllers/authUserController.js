@@ -61,18 +61,23 @@ export const registerAuthUserController = async (req, res) => {
     throw createHttpError(409, 'Email in use');
   }
 
-  const user = await createAuthUserService(req.body);
-  const session = await getAuthUserSessionService(user._id);
-  setupAuthUserSessionCookies(res, session);
+  authUser = await createAuthUserService(req.body);
+  const session = await setupAuthUserSession(authUser, res);
 
   res.status(201).json({
     status: 201,
     message: 'Successfully registered a user!',
     data: {
       accessToken: session.accessToken,
-      user,
+      user: authUser,
     },
   });
+};
+
+const setupAuthUserSession = async (authUser, res) => {
+  const session = await getAuthUserSessionService(authUser._id);
+  setupAuthUserSessionCookies(res, session);
+  return session;
 };
 
 export const loginAuthUserController = async (req, res) => {
@@ -87,13 +92,15 @@ export const loginAuthUserController = async (req, res) => {
     throw createHttpError(401, 'Unauthorized');
   }
 
-  const session = await getAuthUserSessionService(authUser._id);
-  setupAuthUserSessionCookies(res, session);
+  const session = await setupAuthUserSession(authUser, res);
 
   res.json({
     status: 200,
     message: 'Successfully logged in an user!',
-    data: { accessToken: session.accessToken },
+    data: {
+      accessToken: session.accessToken,
+      user: authUser,
+    },
   });
 };
 
