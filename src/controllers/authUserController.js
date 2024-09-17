@@ -117,7 +117,7 @@ export const logoutAuthUserController = async (req, res) => {
 };
 
 export const refreshAuthUserSessionController = async (req, res) => {
-  console.log('request from frontend', req);
+  console.log('request from frontend', req.cookies);
   const { sessionId } = req.cookies;
 
   const session = await getAuthUserSessionById(sessionId);
