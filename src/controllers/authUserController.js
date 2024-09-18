@@ -132,6 +132,7 @@ export const refreshAuthUserSessionController = async (req, res) => {
   }
 
   const authUserSession = await refreshAuthUsersSessionService(session);
+  const authUser = await getAuthUserById(authUserSession.userId);
   setupAuthUserSessionCookies(res, authUserSession);
 
   res.json({
@@ -139,6 +140,7 @@ export const refreshAuthUserSessionController = async (req, res) => {
     message: 'Successfully refreshed a session!',
     data: {
       accessToken: authUserSession.accessToken,
+      user: authUser,
     },
   });
 };
