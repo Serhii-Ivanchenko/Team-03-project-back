@@ -15,13 +15,8 @@ export const getAuthUsersSessionsService = async () => {
 };
 
 export const refreshAuthUsersSessionService = async (session) => {
-  //// await AuthUserSessionCollection.deleteOne({_id:session._id });
   await AuthUserSessionCollection.findByIdAndDelete(session._id);
-  // await AuthUserSessionCollection.deleteOne({
-  //   _id: session._id,
-  //   userId: session.userId,
-  // });
-  const authUserSession = getAuthUserSession(session.userId);
+  const authUserSession = await getAuthUserSession(session.userId);
   return authUserSession;
 };
 

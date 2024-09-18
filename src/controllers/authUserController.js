@@ -1,6 +1,7 @@
 import createHttpError from 'http-errors';
 
 import {
+  getAuthUserById,
   getAuthUserByEmail,
   getAuthUsersService,
   createAuthUserService,
@@ -21,7 +22,6 @@ import { comparePasswords } from '../utils/password.js';
 
 import { generateAuthUrl } from '../utils/googleOAuth2.js';
 import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
-import { UserCollection } from '../db/models/userModel.js';
 
 export const getAuthController = async (req, res) => {
   res.send({
@@ -46,6 +46,7 @@ export const getAuthUsersController = async (req, res) => {
     data: authUsers,
   });
 };
+
 export const getAuthUsersSessionsController = async (req, res) => {
   const authUsersSessions = await getAuthUsersSessionsService();
   res.send({
@@ -156,7 +157,7 @@ export const getGoogleOAuthUrlController = async (req, res) => {
 export const loginWithGoogleController = async (req, res) => {
   const session = await loginOrSignupWithGoogle(req.body.code);
 
-  const user = await UserCollection.findById(session.userId);
+  const user = await getAuthUserById(session.userId);
 
   setupAuthUserSessionCookies(res, session);
 
@@ -165,7 +166,7 @@ export const loginWithGoogleController = async (req, res) => {
     message: 'Successfully logged in via Google OAuth!',
     data: {
       accessToken: session.accessToken,
-      user
+      user,
     },
   });
 };
