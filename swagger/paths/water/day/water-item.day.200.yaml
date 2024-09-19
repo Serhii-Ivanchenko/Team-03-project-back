@@ -4,11 +4,16 @@ content:
     schema:
       type: object
       required:
+        - date
         - userId
         - dailyNorm
         - totalValue
         - data
       properties:
+        date:
+          type: string
+          format: date
+          example: '2024-09-09'
         userId:
           type: string
           example: '66e2e3423073bfb71be21f81'
@@ -26,17 +31,12 @@ content:
             type: object
             required:
               - id
-              - date
               - time
               - value
             properties:
               id:
                 type: string
                 example: '66e33067ec54bcf268b5f78f'
-              date:
-                type: string
-                format: date
-                example: '2024-09-01'
               time:
                 type: string
                 format: time
@@ -45,19 +45,17 @@ content:
                 type: integer
                 example: 555
       example:
+        date: '2024-09-01'
         userId: '66e2e3423073bfb71be21f81'
         dailyNorm: 1700
         totalValue: 815
         data:
           - id: '66e33067ec54bcf268b5f78f'
-            date: '2024-09-01'
             time: '21:18'
             value: 555
           - id: '66e4079d1c4eb0e98f4ffe82'
-            date: '2024-09-01'
             time: '12:36'
             value: 130
           - id: '66e723e1529bb9cc3866acfe'
-            date: '2024-09-01'
             time: '21:13'
             value: 130
