@@ -1,23 +1,21 @@
 import createHttpError from 'http-errors';
 import {
   addWaterDataService,
-  getWaterDataService,
-} from '../services/waterDataService.js';
-import {
-  deleteWaterItemService,
+  // getWaterDataService,
   updateWaterItemService,
+  deleteWaterItemService,
+  getWaterDataDayService,
+  getWaterDataMonthService,
 } from '../services/waterDataService.js';
-import { getDayWaterDataService } from '../services/waterDataService.js';
-import { getMonthWaterDataService } from '../services/waterDataService.js';
 
-export const getWaterDataController = async (req, res) => {
-  const waterData = await getWaterDataService(req.query);
-  res.send({
-    datetimestamp: new Date(),
-    count: waterData.length,
-    data: waterData,
-  });
-};
+// export const getWaterDataController = async (req, res) => {
+//   const waterData = await getWaterDataService(req.query);
+//   res.send({
+//     datetimestamp: new Date(),
+//     count: waterData.length,
+//     data: waterData,
+//   });
+// };
 
 export const createWaterDataController = async (req, res) => {
   const data = await addWaterDataService(req.waterData);
@@ -59,27 +57,28 @@ export const deleteWaterItemByIdController = async (req, res, next) => {
   res.status(204).send();
 };
 
-export const getDayWaterDataController = async (req, res, next) => {
+export const getWaterDataDayController = async (req, res, next) => {
   let { date } = req.params;
   const user = req.authUser;
   const userId = user._id;
 
-  const data = await getDayWaterDataService(userId, date);
+  const day = await getWaterDataDayService(userId, date);
 
   res.send({
+    date,
     userId,
     dailyNorm: user.dailyNorm,
-    totalValue: data.dayValue,
-    data: data.dayData,
+    totalValue: day.totalValue,
+    data: day.data,
   });
 };
 
-export const getMonthWaterDataController = async (req, res, next) => {
+export const getWaterDataMonthController = async (req, res, next) => {
   let { date } = req.params;
   const user = req.authUser;
   const userId = user._id;
 
-  const waterData = await getMonthWaterDataService(userId, date);
+  const waterData = await getWaterDataMonthService(userId, date);
 
   res.send({
     userId,

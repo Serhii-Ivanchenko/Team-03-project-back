@@ -1,24 +1,24 @@
-import { Router, json } from 'express';
+import { Router } from 'express';
 import { controllerWrapper } from '../utils/controllerWrapper.js';
+import { defineWaterDataObject } from '../middlewares/waterData.js';
+import { validateBody } from '../middlewares/validateBody.js';
+import { validateId } from '../middlewares/validateId.js';
 import {
   addWaterDataSchema,
   updateWaterDataSchema,
 } from '../validation/waterDataValidation.js';
-import { validateBody } from '../middlewares/validateBody.js';
 import {
-  getWaterDataController,
+  // getWaterDataController,
   upsertWaterItemController,
   createWaterDataController,
+  getWaterDataDayController,
+  getWaterDataMonthController,
   deleteWaterItemByIdController,
-  getDayWaterDataController,
-  getMonthWaterDataController,
 } from '../controllers/waterDataController.js';
-import { defineWaterDataObject } from '../middlewares/waterData.js';
-import { validateId } from '../middlewares/validateId.js';
 
 const router = Router();
 
-router.get('/', controllerWrapper(getWaterDataController));
+// router.get('/', controllerWrapper(getWaterDataController));
 
 router.post(
   '/',
@@ -41,9 +41,9 @@ router.delete(
   controllerWrapper(deleteWaterItemByIdController),
 );
 
-router.get('/day', controllerWrapper(getDayWaterDataController));
-router.get('/month', controllerWrapper(getMonthWaterDataController));
-router.get('/day/:date', controllerWrapper(getDayWaterDataController));
-router.get('/month/:date', controllerWrapper(getMonthWaterDataController));
+// router.get('/day', controllerWrapper(getDayWaterDataController));
+// router.get('/month', controllerWrapper(getMonthWaterDataController));
+router.get('/day/:date', controllerWrapper(getWaterDataDayController));
+router.get('/month/:date', controllerWrapper(getWaterDataMonthController));
 
 export default router;

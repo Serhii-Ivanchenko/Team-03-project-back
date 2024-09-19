@@ -5,10 +5,10 @@ import {
   getAllDaysInMonth,
 } from '../utils/dateHelper.js';
 
-export const getWaterDataService = async () => {
-  const waterData = WaterDataCollection.find();
-  return waterData;
-};
+// export const getWaterDataService = async () => {
+//   const waterData = WaterDataCollection.find();
+//   return waterData;
+// };
 
 export const addWaterDataService = async (data) => {
   const waterItem = await WaterDataCollection.create(data);
@@ -46,20 +46,20 @@ export const deleteWaterItemService = async (userId, id) => {
   return waterItem;
 };
 
-export const getDayWaterDataService = async (userId, date) => {
+export const getWaterDataDayService = async (userId, date) => {
   date = getFormattedDate(date);
   const result = await WaterDataCollection.find({ userId, date });
-  const dayData = result.map((item) => ({
+  const data = result.map((item) => ({
     id: item._id,
-    date: item.date,
+    // date: item.date,
     time: item.time,
     value: item.value,
   }));
-  const dayValue = result.reduce((acc, item) => acc + item.value, 0);
-  return { dayData, dayValue };
+  const totalValue = result.reduce((acc, item) => acc + item.value, 0);
+  return { data, totalValue };
 };
 
-export const getMonthWaterDataService = async (userId, date) => {
+export const getWaterDataMonthService = async (userId, date) => {
   const monthDates = getMonthDates(date);
   const minDate = monthDates.som;
   const maxDate = monthDates.eom;
@@ -98,7 +98,7 @@ export const getMonthWaterDataService = async (userId, date) => {
 
   const monthDays = getAllDaysInMonth(date);
   const waterDataMap = new Map(waterData.map((item) => [item.date, item]));
-  const monthWaterData = monthDays.map((day) => {
+  const waterDataMonth = monthDays.map((day) => {
     if (waterDataMap.has(day)) {
       return waterDataMap.get(day);
     }
@@ -108,5 +108,5 @@ export const getMonthWaterDataService = async (userId, date) => {
     };
   });
 
-  return monthWaterData;
+  return waterDataMonth;
 };
