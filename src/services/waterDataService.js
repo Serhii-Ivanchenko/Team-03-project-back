@@ -5,11 +5,6 @@ import {
   getAllDaysInMonth,
 } from '../utils/dateHelper.js';
 
-// export const getWaterDataService = async () => {
-//   const waterData = WaterDataCollection.find();
-//   return waterData;
-// };
-
 export const addWaterDataService = async (data) => {
   const waterItem = await WaterDataCollection.create(data);
   return waterItem;
@@ -51,7 +46,6 @@ export const getWaterDataDayService = async (userId, date) => {
   const result = await WaterDataCollection.find({ userId, date });
   const data = result.map((item) => ({
     id: item._id,
-    // date: item.date,
     time: item.time,
     value: item.value,
   }));

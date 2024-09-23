@@ -26,7 +26,6 @@ export const updateUserPassword = (_id, password) =>
   UserCollection.findOneAndUpdate({ _id }, { password });
 
 export const createAuthUserService = async (userData) => {
-  // const encryptedPassword = await bcrypt.hash(userData.password, 10);
   const encryptedPassword = await getEncryptedPassword(userData.password);
 
   return await UserCollection.create({

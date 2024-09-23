@@ -1,21 +1,11 @@
 import createHttpError from 'http-errors';
 import {
   addWaterDataService,
-  // getWaterDataService,
   updateWaterItemService,
   deleteWaterItemService,
   getWaterDataDayService,
   getWaterDataMonthService,
 } from '../services/waterDataService.js';
-
-// export const getWaterDataController = async (req, res) => {
-//   const waterData = await getWaterDataService(req.query);
-//   res.send({
-//     datetimestamp: new Date(),
-//     count: waterData.length,
-//     data: waterData,
-//   });
-// };
 
 export const createWaterDataController = async (req, res) => {
   const data = await addWaterDataService(req.waterData);
