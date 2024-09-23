@@ -8,7 +8,6 @@ import {
   updateWaterDataSchema,
 } from '../validation/waterDataValidation.js';
 import {
-  // getWaterDataController,
   upsertWaterItemController,
   createWaterDataController,
   getWaterDataDayController,
@@ -17,8 +16,6 @@ import {
 } from '../controllers/waterDataController.js';
 
 const router = Router();
-
-// router.get('/', controllerWrapper(getWaterDataController));
 
 router.post(
   '/',
@@ -41,8 +38,6 @@ router.delete(
   controllerWrapper(deleteWaterItemByIdController),
 );
 
-// router.get('/day', controllerWrapper(getDayWaterDataController));
-// router.get('/month', controllerWrapper(getMonthWaterDataController));
 router.get('/day/:date', controllerWrapper(getWaterDataDayController));
 router.get('/month/:date', controllerWrapper(getWaterDataMonthController));
 

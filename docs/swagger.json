@@ -638,6 +638,11 @@
                     "type": "string",
                     "example": "Max Payne"
                   },
+                  "email": {
+                    "description": "Email address of the user.",
+                    "type": "string",
+                    "example": "BabaYaga@gmail.com"
+                  },
                   "gender": {
                     "description": "The user's gender",
                     "type": "string",
@@ -650,17 +655,23 @@
                   "weight": {
                     "description": "The user's weight in kilograms",
                     "type": "number",
-                    "example": 85
+                    "example": 85,
+                    "minimum": 0,
+                    "maximum": 350
                   },
                   "activeTime": {
                     "description": "Time spent on physical activity in hours",
                     "type": "number",
-                    "example": 6
+                    "example": 6,
+                    "minimum": 0,
+                    "maximum": 24
                   },
                   "dailyNorm": {
                     "description": "The user's daily water intake in milliliters",
                     "type": "number",
-                    "example": 1500
+                    "example": 1500,
+                    "minimum": 1000,
+                    "maximum": 15000
                   }
                 }
               }
