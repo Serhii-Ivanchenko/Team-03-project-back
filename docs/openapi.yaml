@@ -15,8 +15,6 @@ tags:
     description: Operations about water.
 servers:
   - url: https://watertracker-app-spy2.onrender.com
-  - url: http://localhost:8080
-  - url: http://localhost:3000
 paths:
   # auth:
   /auth/register:

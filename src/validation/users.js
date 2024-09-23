@@ -5,6 +5,6 @@ export const usersUpdateSchema = Joi.object({
   email: Joi.string().email(),
   gender: Joi.string().valid('woman', 'man'),
   weight: Joi.number().positive().min(0).max(350).precision(1),
-  activeTime: Joi.number().positive().min(0).max(25).precision(2),
-  dailyNorm: Joi.number().positive().min(0).max(15000).precision(0),
+  activeTime: Joi.number().positive().min(0).max(24).precision(2),
+  dailyNorm: Joi.number().positive().min(1000).max(15000).precision(0),
 });
