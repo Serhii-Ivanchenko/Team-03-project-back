@@ -13,7 +13,7 @@ content:
           example: '66e2e3423073bfb71be21f81'
         dailyNorm:
           type: integer
-          example: 1700
+          example: 1.7
         data:
           type: array
           items:
@@ -31,7 +31,7 @@ content:
                 example: 815
       example:
         userId: '66e2e3423073bfb71be21f81'
-        dailyNorm: 1700
+        dailyNorm: 1.7
         data:
           - date: '2024-09-01'
             value: 815

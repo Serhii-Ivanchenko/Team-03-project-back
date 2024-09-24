@@ -49,7 +49,7 @@ properties:
     example: 24
     default: 0
   dailyNorm:
-    description: 'Daily water intake in milliliters'
+    description: 'Daily water intake in liters'
     type: number
-    example: 2500
-    default: 1700
+    example: 2.5
+    default: 1.7

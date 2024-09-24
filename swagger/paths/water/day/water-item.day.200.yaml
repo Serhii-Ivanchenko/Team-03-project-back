@@ -19,8 +19,8 @@ content:
           example: '66e2e3423073bfb71be21f81'
         dailyNorm:
           type: integer
-          description: 'The daily target value or norm that the user aims to achieve.'
-          example: 1700
+          description: 'The daily target value or norm that the user aims to achieve in liters.'
+          example: 1.7
         totalValue:
           type: integer
           description: 'The total value accumulated over the data period.'
@@ -47,7 +47,7 @@ content:
       example:
         date: '2024-09-01'
         userId: '66e2e3423073bfb71be21f81'
-        dailyNorm: 1700
+        dailyNorm: 1.7
         totalValue: 815
         data:
           - id: '66e33067ec54bcf268b5f78f'
