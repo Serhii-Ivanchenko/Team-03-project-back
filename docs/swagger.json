@@ -667,11 +667,11 @@
                     "maximum": 24
                   },
                   "dailyNorm": {
-                    "description": "The user's daily water intake in milliliters",
+                    "description": "The user's daily water intake in liters",
                     "type": "number",
-                    "example": 1500,
-                    "minimum": 1000,
-                    "maximum": 15000
+                    "example": 1.5,
+                    "minimum": 1,
+                    "maximum": 15
                   }
                 }
               }
@@ -1041,10 +1041,10 @@
             "default": 0
           },
           "dailyNorm": {
-            "description": "Daily water intake in milliliters",
+            "description": "Daily water intake in liters",
             "type": "number",
-            "example": 2500,
-            "default": 1700
+            "example": 2.5,
+            "default": 1.7
           }
         }
       },
@@ -1526,8 +1526,8 @@
                 },
                 "dailyNorm": {
                   "type": "integer",
-                  "description": "The daily target value or norm that the user aims to achieve.",
-                  "example": 1700
+                  "description": "The daily target value or norm that the user aims to achieve in liters.",
+                  "example": 1.7
                 },
                 "totalValue": {
                   "type": "integer",
@@ -1564,7 +1564,7 @@
               "example": {
                 "date": "2024-09-01",
                 "userId": "66e2e3423073bfb71be21f81",
-                "dailyNorm": 1700,
+                "dailyNorm": 1.7,
                 "totalValue": 815,
                 "data": [
                   {
@@ -1606,7 +1606,7 @@
                 },
                 "dailyNorm": {
                   "type": "integer",
-                  "example": 1700
+                  "example": 1.7
                 },
                 "data": {
                   "type": "array",
@@ -1632,7 +1632,7 @@
               },
               "example": {
                 "userId": "66e2e3423073bfb71be21f81",
-                "dailyNorm": 1700,
+                "dailyNorm": 1.7,
                 "data": [
                   {
                     "date": "2024-09-01",
